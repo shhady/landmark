@@ -1,10 +1,8 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense } from 'react'
 import { Background } from '@/components/Background'
 import { ErrorBoundary } from 'react-error-boundary'
-import { notFound } from 'next/navigation'
 
 // Move allServices outside the component
 const allServices = {
@@ -13,7 +11,7 @@ const allServices = {
     description: `מדידות קרקע מדויקות ומקצועיות המבוצעות באמצעות ציוד מדידה מתקדם. 
     אנו מספקים שירותי מדידה מקיפים הכוללים מיפוי טופוגרפי, חישובי כמויות, 
     ומדידות לפיתוח שטח. צוות המודדים המוסמך שלנו מבטיח דיוק מרבי ועמידה בכל התקנים והדרישות.`,
-    icon: '🗺️',
+    icon: '',
     services: [
       { 
         title: 'מדידות טופוגרפיות', 
@@ -52,7 +50,7 @@ const allServices = {
     description: `שירותי מדידה מקצועיים לצורכי תכנון ובנייה, המותאמים לדרישות הרשויות והוועדות המקומיות. 
     צוות המודדים שלנו מתמחה בהכנת תכניות מדידה לכל סוגי ההיתרים והתכניות, תוך שימוש בטכנולוגיות המתקדמות ביותר 
     ועמידה בכל התקנים והדרישות המקצועיות.`,
-    icon: '📐',
+    icon: '',
     services: [
       { 
         title: 'מדידות להיתרי בנייה', 
@@ -90,7 +88,7 @@ const allServices = {
     title: 'מדידות לרישום',
     description: `שירותי מדידה מקיפים לצורכי רישום בטאבו ורישוי, המבוצעים בהתאם לדרישות המרכז למיפוי ישראל ורשם המקרקעין. 
     אנו מלווים את הלקוח לאורך כל התהליך, מהמדידה הראשונית ועד לרישום הסופי, תוך הקפדה על דיוק, מקצועיות ועמידה בלוחות זמנים.`,
-    icon: '📑',
+    icon: '',
     services: [
       { 
         title: 'תצ"ר', 
@@ -129,7 +127,7 @@ const allServices = {
     description: `שירותי מדידה הנדסיים מתקדמים לפרויקטי בנייה ותשתיות. 
     אנו משלבים טכנולוגיות מדידה חדישות עם ניסיון מקצועי רב שנים, 
     ומספקים פתרונות מדידה מדויקים ואמינים לכל סוגי הפרויקטים ההנדסיים.`,
-    icon: '⚙️',
+    icon: '',
     services: [
       { 
         title: 'מדידות As-Made', 
@@ -168,7 +166,7 @@ const allServices = {
     description: `שירותי מיפוי מתקדמים באמצעות טכנולוגיות צילום אוויר וסריקה תלת-ממדית. 
     אנו משתמשים ברחפנים מתקדמים וציוד צילום חדיש לביצוע מיפוי מדויק ומפורט, 
     המאפשר קבלת תמונה מלאה ומדויקת של השטח בזמן קצר ובעלות משתלמת.`,
-    icon: '📸',
+    icon: '',
     services: [
       { 
         title: 'צילום ברחפנים', 
@@ -204,19 +202,63 @@ const allServices = {
   }
 }
 
-function ErrorFallback({ error, resetErrorBoundary }) {
+function ServicesContent() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-red-600 mb-4">שגיאה בטעינת השירותים</h2>
-        <p className="text-gray-600 mb-4">{error.message}</p>
-        <button
-          onClick={resetErrorBoundary}
-          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+    <div className="min-h-screen overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="bg-[#2c3d50] text-white py-16">
+        <div className="container mx-auto px-4 max-w-full">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
+            <p className="text-xl">
+              מגוון שירותי מדידה מתקדמים ומקצועיים
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Sections */}
+      {Object.entries(allServices).map(([key, categoryData], index) => (
+        <section 
+          key={key}
+          id={key}
+          className={`py-20 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
         >
-          נסה שוב
-        </button>
-      </div>
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-[#2c3d50]">
+                {categoryData.title}
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                {categoryData.description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {categoryData.services.map((service, index) => (
+                <div
+                  key={`${key}-${index}`}
+                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="text-2xl bg-blue-50 p-3 rounded-lg text-blue-600">
+                        {service.icon}
+                      </span>
+                      <h3 className="text-xl font-bold text-[#2c3d50]">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
     </div>
   )
 }
@@ -232,77 +274,19 @@ function LoadingFallback() {
   )
 }
 
-function ServicesContent() {
-  const searchParams = useSearchParams()
-  const [isLoading, setIsLoading] = useState(true)
-  const [services, setServices] = useState({})
-  
-  useEffect(() => {
-    const category = searchParams?.get('category')
-    
-    if (category && !allServices[category]) {
-      notFound()
-    }
-    
-    const servicesToShow = category ? 
-      { [category]: allServices[category] } : 
-      allServices
-    
-    setServices(servicesToShow)
-    setIsLoading(false)
-  }, [searchParams])
-
-  if (isLoading) {
-    return <LoadingFallback />
-  }
-
+function ErrorFallback({ error, resetErrorBoundary }) {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <section className="bg-[#2c3d50] text-white py-16">
-        <div className="container mx-auto px-4 max-w-full">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
-            <p className="text-xl">
-              {searchParams?.get('category') ? 
-                allServices[searchParams.get('category')]?.description : 
-                'מגוון שירותי מדידה מתקדמים ומקצועיים'
-              }
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 relative bg-white">
-        <Background />
-        <div className="container mx-auto px-4 max-w-full">
-          {Object.entries(services).map(([key, categoryData]) => (
-            <div
-              key={key}
-              id={key}
-              className="mb-16 last:mb-0 scroll-mt-20 overflow-hidden"
-            >
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <span className="text-4xl">{categoryData.icon}</span>
-                <h2 className="text-3xl font-bold text-center">{categoryData.title}</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                {categoryData.services.map((service, index) => (
-                  <div
-                    key={`${key}-${index}`}
-                    className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl">{service.icon}</span>
-                      <h3 className="text-xl font-semibold">{service.title}</h3>
-                    </div>
-                    <p className="text-gray-600">{service.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-red-600 mb-4">שגיאה בטעינת השירותים</h2>
+        <p className="text-gray-600 mb-4">{error.message}</p>
+        <button
+          onClick={resetErrorBoundary}
+          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+        >
+          נסה שוב
+        </button>
+      </div>
     </div>
   )
 }
