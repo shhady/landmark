@@ -10,5 +10,17 @@
 
 body {
   direction: rtl;
-  
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-[100vw] md:max-w-7xl mx-auto;
+  }
 }

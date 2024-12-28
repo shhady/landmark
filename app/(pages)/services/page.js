@@ -209,9 +209,9 @@ function ServicesContent() {
   const servicesToShow = category ? { [category]: allServices[category] } : allServices
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <section className="bg-[#2c3d50] text-white py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -227,7 +227,7 @@ function ServicesContent() {
 
       <section className="py-16 relative bg-white">
         <Background />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 max-w-full">
           {Object.entries(servicesToShow).map(([key, categoryData], categoryIndex) => (
             <motion.div
               id={key}
@@ -235,20 +235,20 @@ function ServicesContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: categoryIndex * 0.2 }}
-              className="mb-16 last:mb-0 scroll-mt-20"
+              className="mb-16 last:mb-0 scroll-mt-20 overflow-hidden"
             >
               <div className="flex items-center justify-center gap-4 mb-8">
                 <span className="text-4xl">{categoryData.icon}</span>
                 <h2 className="text-3xl font-bold text-center">{categoryData.title}</h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 {categoryData.services.map((service, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: (categoryIndex * 0.2) + (index * 0.1) }}
-                    className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                    className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-2xl">{service.icon}</span>

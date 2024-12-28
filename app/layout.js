@@ -17,9 +17,9 @@ export default function RootLayout({ children }) {
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link rel="manifest" href="/site.webmanifest" />
         </head>
-      <body>
+      <body className="overflow-x-hidden">
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>
