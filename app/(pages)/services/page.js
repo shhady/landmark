@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Suspense, useEffect, useState } from 'react'
 import { Background } from '@/components/Background'
 import { ErrorBoundary } from 'react-error-boundary'
+import { notFound } from 'next/navigation'
 
 // Move allServices outside the component
 const allServices = {
@@ -240,12 +241,19 @@ function ServicesContent() {
   useEffect(() => {
     setMounted(true)
     const category = searchParams?.get('category')
+    if (category && !allServices[category]) {
+      notFound()
+    }
     setCurrentCategory(category)
   }, [searchParams])
 
-  const servicesToShow = currentCategory ? 
+  const servicesToShow = currentCategory && allServices[currentCategory] ? 
     { [currentCategory]: allServices[currentCategory] } : 
     allServices
+
+  if (!mounted) {
+    return <LoadingFallback />
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden">
