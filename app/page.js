@@ -80,6 +80,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Team Section */}
+      <section className="py-16 relative bg-[#2c3d50] ">
+        {/* <Background /> */}
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">הצוות המקצועי שלנו</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                name: "ג'ואד סרחאן",
+                role: 'מודד מוסמך',
+                desc: 'בעל ניסיון רב שנים בתחום המדידות ההנדסיות ומדידות המקרקעין'
+              },
+              {
+                name: 'עסאם חכרוש',
+                role: 'מודד מוסמך',
+                desc: 'מתמחה במדידות טופוגרפיות ומיפוי פוטוגרמטרי מתקדם'
+              }
+            ].map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-white p-8 rounded-lg shadow-lg text-center"
+              >
+                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-4xl">👤</span>
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
+                <p className="text-blue-600 mb-3">{member.role}</p>
+                <p className="text-gray-600">{member.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Why Choose Us */}
       <section className="py-16 relative bg-white">
@@ -145,43 +183,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 relative bg-white">
-        <Background />
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl font-bold mb-12 text-center">הסוות המקצועי שלנו</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                name: "ג'ואד סרחאן",
-                role: 'מודד מוסמך',
-                desc: 'בעל ניסיון רב שנים בתחום המדידות ההנדסיות ומדידות המקרקעין'
-              },
-              {
-                name: 'עסאם חכרוש',
-                role: 'מודד מוסמך',
-                desc: 'מתמחה במדידות טופוגרפיות ומיפוי פוטוגרמטרי מתקדם'
-              }
-            ].map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-white p-8 rounded-lg shadow-lg text-center"
-              >
-                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl">👤</span>
-                </div>
-                <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
-                <p className="text-blue-600 mb-3">{member.role}</p>
-                <p className="text-gray-600">{member.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Expertise Section */}
       <section className="py-16 relative bg-white">
         <Background />
@@ -191,7 +192,7 @@ export default function Home() {
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold mb-4">מדידות מקרקעין</h3>
               <ul className="space-y-3">
-                <li className="flex items-start">
+                <li className="flex items-start text-center">
                   <span className="text-blue-500 mr-2">•</span>
                   <span>תצ"ר (תכנית לצורכי רישום)</span>
                 </li>
