@@ -8,7 +8,14 @@ const nextConfig = {
     },
     images: {
       domains: [], // Add any image domains if needed
-    }
+    },
+    webpack: (config) => {
+      config.module.rules.push({
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      })
+      return config
+    },
   }
   
   export default nextConfig 
