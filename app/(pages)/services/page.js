@@ -1,24 +1,18 @@
 'use client'
 
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Background } from '@/components/Background'
 
 export default function Services() {
   const searchParams = useSearchParams()
-  const router = useRouter()
-  const category = searchParams.get('category')
+  const category = searchParams?.get('category')
+  const [isClient, setIsClient] = useState(false)
 
-  // Scroll to section when loaded from footer link
   useEffect(() => {
-    if (category) {
-      const element = document.getElementById(category)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }
-  }, [category])
+    setIsClient(true)
+  }, [])
 
   const allServices = {
     'מדידות-קרקע': {
@@ -217,7 +211,13 @@ export default function Services() {
     }
   }
 
-  const servicesToShow = category ? { [category]: allServices[category] } : allServices
+  const servicesToShow = isClient && category ? 
+    { [category]: allServices[category] } : 
+    allServices
+
+  if (!isClient) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="min-h-screen">
