@@ -23,7 +23,6 @@ body {
   }
 }
 
-/* Add these utility classes */
 @layer utilities {
   .bg-gradient-primary {
     @apply bg-gradient-to-b from-[#2c3d50] to-[#1a2634];
