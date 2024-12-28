@@ -2,17 +2,12 @@
 
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { Suspense } from 'react'
 import { Background } from '@/components/Background'
 
-export default function Services() {
+function ServicesContent() {
   const searchParams = useSearchParams()
   const category = searchParams?.get('category')
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   const allServices = {
     'מדידות-קרקע': {
@@ -211,13 +206,7 @@ export default function Services() {
     }
   }
 
-  const servicesToShow = isClient && category ? 
-    { [category]: allServices[category] } : 
-    allServices
-
-  if (!isClient) {
-    return <div>Loading...</div>
-  }
+  const servicesToShow = category ? { [category]: allServices[category] } : allServices
 
   return (
     <div className="min-h-screen">
@@ -274,5 +263,13 @@ export default function Services() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function Services() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ServicesContent />
+    </Suspense>
   )
 } 
