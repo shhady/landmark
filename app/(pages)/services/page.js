@@ -3,6 +3,7 @@
 import { useSearchParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
+import { Background } from '@/components/Background'
 
 export default function Services() {
   const searchParams = useSearchParams()
@@ -220,15 +221,14 @@ export default function Services() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-[#2c3d50] text-white py-20">
+      <section className="bg-[#2c3d50] text-white py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-5xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
+            <h1 className="text-4xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
             <p className="text-xl">
               {category ? allServices[category]?.description : 'מגוון שירותי מדידה מתקדמים ומקצועיים'}
             </p>
@@ -236,9 +236,9 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16 relative bg-white">
+        <Background />
+        <div className="container mx-auto px-4 relative z-10">
           {Object.entries(servicesToShow).map(([key, categoryData], categoryIndex) => (
             <motion.div
               id={key}
