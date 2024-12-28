@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Background } from '@/components/Background'
 import { ErrorBoundary } from 'react-error-boundary'
 import { notFound } from 'next/navigation'
@@ -234,15 +234,27 @@ function LoadingFallback() {
 
 function ServicesContent() {
   const searchParams = useSearchParams()
-  const category = searchParams?.get('category')
+  const [isLoading, setIsLoading] = useState(true)
+  const [services, setServices] = useState({})
+  
+  useEffect(() => {
+    const category = searchParams?.get('category')
+    
+    if (category && !allServices[category]) {
+      notFound()
+    }
+    
+    const servicesToShow = category ? 
+      { [category]: allServices[category] } : 
+      allServices
+    
+    setServices(servicesToShow)
+    setIsLoading(false)
+  }, [searchParams])
 
-  if (category && !allServices[category]) {
-    notFound()
+  if (isLoading) {
+    return <LoadingFallback />
   }
-
-  const servicesToShow = category && allServices[category] ? 
-    { [category]: allServices[category] } : 
-    allServices
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -251,7 +263,10 @@ function ServicesContent() {
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
             <p className="text-xl">
-              {category ? allServices[category]?.description : 'מגוון שירותי מדידה מתקדמים ומקצועיים'}
+              {searchParams?.get('category') ? 
+                allServices[searchParams.get('category')]?.description : 
+                'מגוון שירותי מדידה מתקדמים ומקצועיים'
+              }
             </p>
           </div>
         </div>
@@ -260,7 +275,7 @@ function ServicesContent() {
       <section className="py-16 relative bg-white">
         <Background />
         <div className="container mx-auto px-4 max-w-full">
-          {Object.entries(servicesToShow).map(([key, categoryData]) => (
+          {Object.entries(services).map(([key, categoryData]) => (
             <div
               key={key}
               id={key}
