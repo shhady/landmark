@@ -3,8 +3,21 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Close sidebar when clicking outside
   useEffect(() => {
@@ -13,7 +26,6 @@ export default function Navbar() {
         setIsOpen(false)
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [isOpen])
@@ -27,124 +39,123 @@ export default function Navbar() {
     }
   }, [isOpen])
 
+  const navLinks = [
+    { href: '/', label: 'דף הבית' },
+    { href: '/about', label: 'אודות' },
+    { href: '/services', label: 'שירותים' },
+    { href: '/portfolio', label: 'תיק עבודות' },
+    { href: '/blog', label: 'בלוג' },
+    { href: '/contact', label: 'צור קשר' },
+  ]
+
   return (
-    <nav className="bg-[#2c3d50] text-white py-4 sticky top-0 z-50">
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-white py-3 shadow-sm'
+    }`}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
-          {/* Hamburger Button - Moved to right */}
+        <div className="flex justify-between items-center h-12 md:h-12">
+          {/* Hamburger Button (Mobile) - Right aligned for RTL */}
           <button
             id="hamburger"
-            className="md:hidden p-2 rounded-lg hover:bg-[#3d5266] transition-colors"
+            className="md:hidden p-2 rounded-lg text-primary hover:bg-neutral-100 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="תפריט"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
 
-          {/* Logo - Always on left */}
-          {/* <Link href="/" className="font-bold text-xl cursor-pointer">
-            <Image src="/logo-landmark.png" alt="Logo" width={100} height={100} />
-          </Link> */}
-
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-6">
-            <Link href="/" className="hover:text-gray-300 transition-colors">דף הבית</Link>
-            <Link href="/about" className="hover:text-gray-300 transition-colors">אודות</Link>
-            <Link href="/services" className="hover:text-gray-300 transition-colors">שירותים</Link>
-            <Link href="/portfolio" className="hover:text-gray-300 transition-colors">תיק עבודות</Link>
-            <Link href="/blog" className="hover:text-gray-300 transition-colors">בלוג</Link>
-            <Link href="/contact" className="hover:text-gray-300 transition-colors">צור קשר</Link>
+          <div className="hidden md:flex gap-6 lg:gap-8 items-center font-medium text-[13px]">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link 
+                  key={link.href}
+                  href={link.href} 
+                  className={`relative group transition-colors ${
+                    isActive ? 'text-secondary font-bold' : 'text-primary hover:text-secondary'
+                  }`}
+                >
+                  {link.label}
+                  <span className={`absolute bottom-[-4px] right-0 h-0.5 bg-secondary transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
+              )
+            })}
           </div>
-           {/* Logo - Always on left */}
-           <Link href="/" className="font-bold text-xl cursor-pointer">
-            <Image src="/logo-landmark.png" alt="Logo" width={200} height={200} />
+
+           {/* Logo - Left aligned */}
+           <Link href="/" className="flex items-center gap-3 group">
+             <div className="relative h-10 w-auto aspect-[3/1]">
+                <Image 
+                  src="/logo-transparent-landmap.png" 
+                  alt="Landmark Logo" 
+                  fill
+                  className="object-cover"
+                  priority
+                />
+             </div>
           </Link>
         </div>
 
-        {/* Sliding Sidebar */}
+        {/* Mobile Sidebar */}
         <div 
           id="sidebar"
-          className={`fixed top-0 right-0 h-full w-64 bg-[#2c3d50] transform transition-transform duration-300 ease-in-out ${
+          className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
-          } md:hidden`}
+          } md:hidden z-50`}
         >
-          <div className="p-6">
-            <button
-              className="mb-8 p-2 hover:bg-[#3d5266] rounded-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <div className="space-y-4">
-              <Link 
-                href="/" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
+          <div className="p-6 flex flex-col h-full">
+            <div className="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
+              <span className="font-bold text-lg text-primary">תפריט</span>
+              <button
+                className="p-2 hover:bg-neutral-100 rounded-full text-gray-500 transition-colors"
                 onClick={() => setIsOpen(false)}
+                aria-label="סגור תפריט"
               >
-                דף הבית
-              </Link>
-              <Link 
-                href="/about" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                אודות
-              </Link>
-              <Link 
-                href="/services" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                שירותים
-              </Link>
-              <Link 
-                href="/portfolio" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                תיק עבודות
-              </Link>
-              <Link 
-                href="/blog" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                בלוג
-              </Link>
-              <Link 
-                href="/contact" 
-                className="block hover:bg-[#3d5266] py-2 px-4 rounded transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                צור קשר
-              </Link>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="space-y-2 font-medium flex-grow">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <Link 
+                    key={link.href}
+                    href={link.href} 
+                    className={`block py-3 px-4 rounded-lg transition-colors ${
+                      isActive 
+                        ? 'bg-secondary/10 text-secondary font-bold' 
+                        : 'text-primary hover:text-secondary hover:bg-gray-50'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </div>
+
+            <div className="mt-auto text-center text-xs text-gray-400 border-t pt-4">
+              © סרחאן וחכרוש מדידות והנדסה
             </div>
           </div>
         </div>
+        
+        {/* Mobile Overlay */}
+        {isOpen && (
+           <div 
+             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden transition-opacity"
+             onClick={() => setIsOpen(false)}
+           ></div>
+        )}
       </div>
     </nav>
   )
-} 
+}

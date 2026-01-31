@@ -39,21 +39,22 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-[#2c3d50] text-white">
+    <footer className="bg-primary-dark text-white border-t border-primary/20">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <Link href="/" className="block">
-              <div className="relative h-12 w-40">
+              <div className="relative">
                 {/* Replace with your logo */}
-                <div className="text-xl font-bold">לוגו החברה</div>
+                <div className="text-2xl font-bold tracking-tight">סרחאן וחכרוש</div>
+                <div className="text-sm text-gray-400">מדידות והנדסה</div>
               </div>
             </Link>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm leading-relaxed">
               חברת מדידות מובילה המספקת שירותי מדידה מקצועיים ומתקדמים
-              בפריסה ארצית, תוך שימוש בטכנולוגיות החדישות ביותר.
+              בצפון ובכל הארץ. דיוק, אמינות וטכנולוגיה מתקדמת לשירותכם.
             </p>
             {/* Social Links */}
             <div className="flex gap-4 pt-4">

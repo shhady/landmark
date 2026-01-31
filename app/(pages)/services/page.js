@@ -1,12 +1,12 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Background } from '@/components/Background'
 import { ErrorBoundary } from 'react-error-boundary'
 
 // Move allServices outside the component
 const allServices = {
-  'מדידות-קרקע': {
+  'land-surveys': {
     title: 'מדידות קרקע',
     description: `מדידות קרקע מדויקות ומקצועיות המבוצעות באמצעות ציוד מדידה מתקדם. 
     אנו מספקים שירותי מדידה מקיפים הכוללים מיפוי טופוגרפי, חישובי כמויות, 
@@ -45,7 +45,7 @@ const allServices = {
       }
     ]
   },
-  'מדידות-לתכנון': {
+  'planning': {
     title: 'מדידות לתכנון',
     description: `שירותי מדידה מקצועיים לצורכי תכנון ובנייה, המותאמים לדרישות הרשויות והוועדות המקומיות. 
     צוות המודדים שלנו מתמחה בהכנת תכניות מדידה לכל סוגי ההיתרים והתכניות, תוך שימוש בטכנולוגיות המתקדמות ביותר 
@@ -84,7 +84,7 @@ const allServices = {
       }
     ]
   },
-  'מדידות-לרישום': {
+  'registration': {
     title: 'מדידות לרישום',
     description: `שירותי מדידה מקיפים לצורכי רישום בטאבו ורישוי, המבוצעים בהתאם לדרישות המרכז למיפוי ישראל ורשם המקרקעין. 
     אנו מלווים את הלקוח לאורך כל התהליך, מהמדידה הראשונית ועד לרישום הסופי, תוך הקפדה על דיוק, מקצועיות ועמידה בלוחות זמנים.`,
@@ -122,7 +122,7 @@ const allServices = {
       }
     ]
   },
-  'מדידות-הנדסיות': {
+  'engineering': {
     title: 'מדידות הנדסיות',
     description: `שירותי מדידה הנדסיים מתקדמים לפרויקטי בנייה ותשתיות. 
     אנו משלבים טכנולוגיות מדידה חדישות עם ניסיון מקצועי רב שנים, 
@@ -161,7 +161,7 @@ const allServices = {
       }
     ]
   },
-  'מיפוי-פוטוגרמטרי': {
+  'photogrammetry': {
     title: 'מיפוי פוטוגרמטרי',
     description: `שירותי מיפוי מתקדמים באמצעות טכנולוגיות צילום אוויר וסריקה תלת-ממדית. 
     אנו משתמשים ברחפנים מתקדמים וציוד צילום חדיש לביצוע מיפוי מדויק ומפורט, 
@@ -203,6 +203,19 @@ const allServices = {
 }
 
 function ServicesContent() {
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '')
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
