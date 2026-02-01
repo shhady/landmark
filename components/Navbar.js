@@ -49,9 +49,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-white py-3 shadow-sm'
-    }`}>
+    <nav className={`sticky top-0 z-50 transition-all duration-300 bg-white py-3 shadow-sm `}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-12 md:h-12">
           {/* Hamburger Button (Mobile) - Right aligned for RTL */}
@@ -89,7 +87,7 @@ export default function Navbar() {
 
            {/* Logo - Left aligned */}
            <Link href="/" className="flex items-center gap-3 group">
-             <div className="relative h-10 w-auto aspect-[3/1]">
+             <div className="relative h-12 lg:h-16 w-auto aspect-[3/1]">
                 <Image 
                   src="/logo-transparent-landmap.png" 
                   alt="Landmark Logo" 
