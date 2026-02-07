@@ -8,7 +8,7 @@ export default function Team() {
     {
       name: "ג'ואד סרחאן",
       role: "מודד מוסמך (ר.מ. 1605) ומהנדס מיפוי",
-      bio: "בוגר הטכניון בהנדסת מיפוי וגיאו-אינפורמציה ולימודי שמאות מקרקעין. מתרגל בקורס קדסטר בטכניון. בעל ניסיון עשיר בניהול מחלקות קדסטר, ליווי פרויקטי ענק (כביש 20, הקו הירוק) ומתן פתרונות מדידה מורכבים בפריסה ארצית. מומחה לרישום מקרקעין והסדר קרקעות.",
+      bio: "ג׳ואד סרחאן הוא מהנדס מיפוי וגיאו־אינפורמציה ומודד מוסמך, חבר סגל הוראה בטכניון בתחום הקדסטר והרישום המקרקעין. ג׳ואד מתמחה בעבודות קדסטר והסדר מקרקעין, לרבות הכנת תוכניות לצורכי רישום, תשריטי תיעוד גבולות, תשריטי חלוקה, תמ״רים, מדידות לצורכי תכנון ותב״עות. לאורך פעילותו ליווה פרויקטי ביצוע רחבי היקף, תוך עבודה מדויקת מול גופים סטטוטוריים, שליטה מלאה בדרישות הרגולטוריות ויכולת ניתוח מעמיקה של סוגיות תכנוניות וקנייניות מורכבות.",
       education: [
         "B.Sc הנדסת מיפוי וגיאו-אינפורמציה, הטכניון",
         "לימודי שמאות מקרקעין, הטכניון",
@@ -17,14 +17,14 @@ export default function Team() {
       skills: ["תצ״ר ורישום מקרקעין", "ליווי פרויקטי תשתיות", "סריקות לייזר", "חוות דעת מומחה", "מדידות לביצוע"],
       contact: {
         phone: "054-6220167",
-        email: "jawad@landmark-srv.com"
+        email: "jawad@landmap-ltd.com"
       },
       image: "/jawad.webp" 
     },
     {
       name: "עיסאם חכרוש",
       role: "מודד מוסמך (ר.מ. 1655) ומהנדס מיפוי",
-      bio: "בוגר הטכניון בהנדסת מיפוי. חבר סגל הוראה בטכניון (קדסטר). מנהל ביצוע בפרויקטי ענק כמו רק\"ל ירושלים (הקו האדום והירוק) ומחלף נתב\"ג. מומחה בטכנולוגיות מדידה מתקדמות, פוטוגרמטריה, רחפנים ומידול תלת-ממדי מדויק.",
+      bio: "עיסאם חכרוש הוא מהנדס מיפוי וגיאו־אינפורמציה ומודד מוסמך, חבר סגל הוראה בטכניון בתחום הקדסטר. עיסאם מתמחה בטכנולוגיות מדידה מתקדמות, בדגש על סריקות לייזר תלת־ממדיות, עיבוד ענני נקודות, פוטוגרמטריה והטסת רחפנים. בעל ניסיון רחב בליווי פרויקטי ביצוע מורכבים, מידול תלת־ממדי, חישובי כמויות, מדידות שטח וסימונים, תוך שילוב טכנולוגיות מתקדמות ויישום פתרונות מדויקים לצורכי תכנון, ביצוע ובקרה.",
       education: [
         "B.Sc הנדסת מיפוי וגיאו-אינפורמציה, הטכניון",
         "סגל הוראה בקורס קדסטר, הטכניון"
@@ -32,7 +32,7 @@ export default function Team() {
       skills: ["ניהול ביצוע פרויקטים", "מיפוי פוטוגרמטרי", "רחפנים ומידול 3D", "בקרת איכות", "מדידות לכבישים ותשתיות"],
       contact: {
         phone: "052-8139769",
-        email: "esam@landmark-srv.com"
+        email: "esam@landmap-ltd.com"
       },
       image: "/essam.webp"
     }
@@ -49,7 +49,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-w-7xl mx-auto">
           {team.map((member, index) => (
             <motion.div
               key={index}
@@ -57,58 +57,22 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}
+              className="flex flex-col h-full"
             >
-              {/* Image Section */}
-              <div className="w-full lg:w-1/2 relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
-                <Image 
-                  src={member.image} 
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-60" />
-                
-                {/* Floating Badge */}
-                <div className={`absolute bottom-8 ${index % 2 === 0 ? 'right-8' : 'left-8'} bg-white/90 backdrop-blur-md px-6 py-4 rounded-xl shadow-lg border border-white/20`}>
-                   <p className="text-primary-dark font-bold text-lg">{member.role}</p>
-                </div>
-              </div>
-
               {/* Content Section */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center">
-                <h3 className="text-4xl font-bold text-primary-dark mb-4">{member.name}</h3>
+              <div className="flex flex-col h-full bg-white rounded-2xl">
+                <h3 className="text-3xl font-bold text-primary-dark mb-2">{member.name}</h3>
+                <p className="text-xl text-secondary-dark font-medium mb-6">{member.role}</p>
                 
-                <div className="w-20 h-1 bg-secondary mb-8 rounded-full"></div>
+                <div className="w-20 h-1 bg-secondary mb-6 rounded-full"></div>
                 
-                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                <p className="text-gray-600 text-lg leading-relaxed mb-8 flex-grow">
                   {member.bio}
                 </p>
 
-                {/* Education */}
-                <div className="mb-8 bg-gray-50 p-6 rounded-xl border border-gray-100">
-                  <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
-                    <span className="text-xl">🎓</span> השכלה והסמכות
-                  </h4>
-                  <ul className="space-y-2">
-                    {member.education.map((edu, i) => (
-                      <li key={i} className="text-gray-700 flex items-start gap-2">
-                        <span className="text-secondary mt-1.5">•</span>
-                        <span>{edu}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              
 
-                {/* Skills Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {member.skills.map((skill, i) => (
-                    <span key={i} className="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-full text-sm font-medium shadow-sm hover:border-secondary/30 transition-colors">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
+            
                 {/* Contact Info */}
                 <div className="flex flex-col sm:flex-row gap-6 mt-auto border-t border-gray-100 pt-8">
                   <a href={`tel:${member.contact.phone}`} className="flex items-center gap-3 text-gray-700 hover:text-secondary transition-colors group">
