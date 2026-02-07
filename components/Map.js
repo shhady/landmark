@@ -69,7 +69,6 @@ const locations = [
   { name: "כעביה-טבאש", coords: [32.8167, 35.1667], color: "#a855f7" },
   { name: "ג'לג'וליה", coords: [32.1500, 34.9500], color: "#ec4899" },
   { name: "ירושלים", coords: [31.7683, 35.2137], color: "#f59e0b" },
-  { name: "עין ראפה", coords: [32.7000, 35.3167], color: "#3b82f6" },
   { name: "כפר כנא", coords: [32.7456, 35.3394], color: "#10b981" },
   { name: "אכסאל", coords: [32.7167, 35.3167], color: "#ef4444" },
   { name: "עראבה", coords: [32.8667, 35.3500], color: "#6366f1" },
