@@ -10,21 +10,21 @@ export default function About() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-primary-dark text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+      <section className="bg-neutral-50 text-primary-dark py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">אודות המשרד</h1>
-            <div className="text-lg leading-relaxed text-gray-200 space-y-6 text-right dir-rtl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary-dark">אודות המשרד</h1>
+            <div className="text-lg leading-relaxed text-gray-700 space-y-6 text-right dir-rtl">
               <p>
-                Landmap – שירותי הנדסה ומדידות הוקמה על ידי שני מודדים מוסמכים, בוגרי הטכניון – מכון טכנולוגי לישראל, בעלי ניסיון מצטבר רב בליווי וניהול פרויקטים הנדסיים מהגדולים והמורכבים בישראל. מייסדי המשרד, ג׳ואד סרחאן ועיסאם חכרוש, השתתפו לאורך השנים לא רק בליווי פרויקטי ביצוע רחבי היקף, אלא גם בניהול מחלקות קדסטר ותכנון, הובלת צוותים מקצועיים, קבלת החלטות הנדסיות וניהול ממשקי עבודה מול רשויות, יזמים וגופים סטטוטוריים.
+                Landmap – שירותי הנדסה ומדידות בע"מ הוקמה על ידי שני מודדים מוסמכים, בוגרי הטכניון, בעלי ניסיון מצטבר רב בליווי וניהול פרויקטים הנדסיים מהגדולים והמורכבים בישראל. מייסדי המשרד, ג׳ואד סרחאן ועיסאם חכרוש, השתתפו לאורך השנים לא רק בליווי פרויקטי ביצוע רחבי היקף, אלא גם בניהול מחלקות קדסטר ותכנון, הובלת צוותים מקצועיים, קבלת החלטות הנדסיות וניהול ממשקי עבודה מול רשויות, יזמים וגופים סטטוטוריים.
               </p>
               <p>
-                המשרד משלב ידע הנדסי עמוק, שליטה מלאה בעבודות קדסטר ותכנון סטטוטורי, ניסיון מוכח בניהול ובקרה, ושימוש בטכנולוגיות מדידה מתקדמות. גישה זו מאפשרת ל-Landmap להעניק ללקוחותיו פתרונות מדויקים, אמינים ומקיפים – החל משלב התכנון והרישוי, דרך ניהול מדידות וליווי ביצוע, ועד למסירת פרויקטים ברמה הגבוהה ביותר
+                המשרד משלב ידע הנדסי עמוק, שליטה מלאה בעבודות קדסטר ותכנון סטטוטורי ללקוחותיה, ניסיון מוכח בניהול ובקרה, ושימוש בטכנולוגיות מדידה מתקדמות. גישה זו מאפשרת ל-Landmap להעניק ללקוחותיה פתרונות מדויקים, אמינים ומקיפים – החל משלב התכנון והרישוי, דרך ניהול מדידות וליווי ביצוע, ועד למסירת פרויקטים ברמה הגבוהה ביותר
               </p>
             </div>
           </motion.div>
@@ -51,18 +51,7 @@ export default function About() {
                 </p>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
-                <div className="p-4 bg-neutral-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl mb-2">🎓</div>
-                  <h3 className="font-bold mb-1">מצוינות אקדמית</h3>
-                  <p className="text-sm text-gray-600">צוות בוגרי הטכניון וסגל הוראה</p>
-                </div>
-                <div className="p-4 bg-neutral-50 rounded-xl border border-gray-100">
-                  <div className="text-3xl mb-2">🚀</div>
-                  <h3 className="font-bold mb-1">חדשנות טכנולוגית</h3>
-                  <p className="text-sm text-gray-600">רחפנים, לייזר ומידול תלת-ממדי</p>
-                </div>
-              </div>
+          
             </motion.div>
             
             <motion.div
@@ -73,7 +62,7 @@ export default function About() {
             >
               {/* Replace with real office image */}
               <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                 <span className="text-6xl">🏢</span>
+               <Image src="/hazon1.jpeg" alt="Office" width={1000} height={1000} />
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
                 <p className="text-white font-bold text-lg">טכנולוגיה ודיוק ללא פשרות</p>

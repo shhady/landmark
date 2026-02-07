@@ -7,7 +7,7 @@ export default function Team() {
   const team = [
     {
       name: "ג'ואד סרחאן",
-      role: "מודד מוסמך (ר.מ. 1605) ומהנדס מיפוי",
+      role: "מודד מוסמך (ר.מ. 1605) ומהנדס מיפוי וגיאו־אינפורמציה ",
       bio: "ג׳ואד סרחאן הוא מהנדס מיפוי וגיאו־אינפורמציה ומודד מוסמך, חבר סגל הוראה בטכניון בתחום הקדסטר והרישום המקרקעין. ג׳ואד מתמחה בעבודות קדסטר והסדר מקרקעין, לרבות הכנת תוכניות לצורכי רישום, תשריטי תיעוד גבולות, תשריטי חלוקה, תמ״רים, מדידות לצורכי תכנון ותב״עות. לאורך פעילותו ליווה פרויקטי ביצוע רחבי היקף, תוך עבודה מדויקת מול גופים סטטוטוריים, שליטה מלאה בדרישות הרגולטוריות ויכולת ניתוח מעמיקה של סוגיות תכנוניות וקנייניות מורכבות.",
       education: [
         "B.Sc הנדסת מיפוי וגיאו-אינפורמציה, הטכניון",
@@ -17,13 +17,13 @@ export default function Team() {
       skills: ["תצ״ר ורישום מקרקעין", "ליווי פרויקטי תשתיות", "סריקות לייזר", "חוות דעת מומחה", "מדידות לביצוע"],
       contact: {
         phone: "054-6220167",
-        email: "jawad@landmap-ltd.com"
+        email: "Jawad@landmap-ltd.com"
       },
       image: "/jawad.webp" 
     },
     {
       name: "עיסאם חכרוש",
-      role: "מודד מוסמך (ר.מ. 1655) ומהנדס מיפוי",
+      role: "מודד מוסמך (ר.מ. 1655) ומהנדס מיפוי וגיאו־אינפורמציה",
       bio: "עיסאם חכרוש הוא מהנדס מיפוי וגיאו־אינפורמציה ומודד מוסמך, חבר סגל הוראה בטכניון בתחום הקדסטר. עיסאם מתמחה בטכנולוגיות מדידה מתקדמות, בדגש על סריקות לייזר תלת־ממדיות, עיבוד ענני נקודות, פוטוגרמטריה והטסת רחפנים. בעל ניסיון רחב בליווי פרויקטי ביצוע מורכבים, מידול תלת־ממדי, חישובי כמויות, מדידות שטח וסימונים, תוך שילוב טכנולוגיות מתקדמות ויישום פתרונות מדויקים לצורכי תכנון, ביצוע ובקרה.",
       education: [
         "B.Sc הנדסת מיפוי וגיאו-אינפורמציה, הטכניון",
@@ -32,7 +32,7 @@ export default function Team() {
       skills: ["ניהול ביצוע פרויקטים", "מיפוי פוטוגרמטרי", "רחפנים ומידול 3D", "בקרת איכות", "מדידות לכבישים ותשתיות"],
       contact: {
         phone: "052-8139769",
-        email: "esam@landmap-ltd.com"
+        email: "Esam@landmap-ltd.com"
       },
       image: "/essam.webp"
     }
@@ -42,11 +42,9 @@ export default function Team() {
     <section className="py-24 bg-white" id="team">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
-          <span className="text-secondary-dark font-semibold tracking-wider uppercase text-sm">המומחים שלנו</span>
+          {/* <span className="text-secondary-dark font-semibold tracking-wider uppercase text-sm">המומחים שלנו</span> */}
           <h2 className="text-4xl font-bold text-primary-dark mt-2 mb-6">הנהלת המשרד</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            שילוב של ניסיון אקדמי מהטכניון, ידע רגולטורי מעמיק וניסיון מעשי בפרויקטים הגדולים בישראל.
-          </p>
+        
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-w-7xl mx-auto">

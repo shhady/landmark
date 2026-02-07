@@ -87,7 +87,7 @@ export default function Navbar() {
 
            {/* Logo - Left aligned */}
            <Link href="/" className="flex items-center gap-3 group">
-             <div className="relative h-12 lg:h-16 w-auto aspect-[3/1]">
+             <div className="relative h-16 lg:h-20 w-auto aspect-[3/1]">
                 <Image 
                   src="/logo-transparent-landmap.png" 
                   alt="Landmark Logo" 
