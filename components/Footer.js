@@ -29,10 +29,10 @@ export default function Footer() {
       title: 'צור קשר',
       contact: true,
       info: {
-        address: 'רחוב הראשי, כפר כנא',
-        phone: '04-6576444',
-        mobile: '050-5241177',
-        email: 'office@surveyors.co.il',
+        address: 'רחוב אכסאל 9, נצרת',
+        phone: '052-8139769',
+        mobile: '054-6220167',
+        email: 'Office@landmap-ltd.com',
         hours: 'א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00'
       }
     }
@@ -48,8 +48,16 @@ export default function Footer() {
             <Link href="/" className="block">
               <div className="relative">
                 {/* Replace with your logo */}
-                <div className="text-2xl font-bold tracking-tight">סרחאן וחכרוש</div>
-                <div className="text-sm text-gray-400">מדידות והנדסה</div>
+                <div className="relative h-16 lg:h-20 w-auto aspect-[3/1]">
+                <Image 
+                  src="/logo-transparent-landmap.png" 
+                  alt="Landmark Logo" 
+                  fill
+                  className="object-cover"
+                  priority
+                />
+             </div>
+                <div className="text-sm text-gray-400">שירותי הנדסה ומדידות בע״מ</div>
               </div>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -122,7 +130,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} כל הזכויות שמורות למשרד מדידות סרחאן וחכרוש
+              © {new Date().getFullYear()} כל הזכויות שמורות ללאנדמאפ שירותי הנדסה ומדידות בע״מ
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <Link href="/privacy" className="hover:text-white transition-colors">

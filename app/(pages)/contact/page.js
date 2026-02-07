@@ -111,22 +111,22 @@ export default function Contact() {
                     <div className="text-2xl text-blue-500">📱</div>
                     <div>
                       <h3 className="font-semibold">טלפון</h3>
-                      <p className="text-gray-600">04-6576444</p>
-                      <p className="text-gray-600">050-5241177</p>
+                      <p className="text-gray-600">052-8139769</p>
+                      <p className="text-gray-600">054-6220167</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4 space-x-reverse">
                     <div className="text-2xl text-blue-500">📧</div>
                     <div>
                       <h3 className="font-semibold">אימייל</h3>
-                      <p className="text-gray-600">office@surveyors.co.il</p>
+                      <p className="text-gray-600">Office@landmap-ltd.com</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4 space-x-reverse">
                     <div className="text-2xl text-blue-500">📍</div>
                     <div>
                       <h3 className="font-semibold">כתובת</h3>
-                      <p className="text-gray-600">רחוב הראשי, כפר כנא</p>
+                      <p className="text-gray-600">רחוב אכסאל 9, נצרת</p>
                     </div>
                   </div>
                 </div>

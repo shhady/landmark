@@ -101,10 +101,10 @@
 [צור קשר](http://localhost:3000/contact)
 [תיק עבודות](http://localhost:3000/portfolio)
 צור קשר
-📍רחוב הראשי, כפר כנא
+רחוב אכסאל, נצרת
 📞04-6576444
 📱050-5241177
-[📧office@surveyors.co.il](mailto:%F0%9F%93%A7office@surveyors.co.il)
+[📧office@landmap-ltd.com](mailto:%F0%9F%93%A7office@landmap-ltd.com)
 🕒א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00
 © 2026 כל הזכויות שמורות למשרד מדידות סרחאן וחכרוש
 [מדיניות פרטיות](http://localhost:3000/privacy)[תנאי שימוש](http://localhost:3000/terms)
@@ -170,10 +170,10 @@
 [צור קשר](http://localhost:3000/contact)
 [תיק עבודות](http://localhost:3000/portfolio)
 צור קשר
-📍רחוב הראשי, כפר כנא
+רחוב אכסאל, נצרת
 📞04-6576444
 📱050-5241177
-[📧office@surveyors.co.il](mailto:%F0%9F%93%A7office@surveyors.co.il)
+[📧office@landmap-ltd.com](mailto:%F0%9F%93%A7office@landmap-ltd.com)
 🕒א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00
 © 2026 כל הזכויות שמורות למשרד מדידות סרחאן וחכרוש
 [מדיניות פרטיות](http://localhost:3000/privacy)[תנאי שימוש](http://localhost:3000/terms)
@@ -297,10 +297,10 @@
 [צור קשר](http://localhost:3000/contact)
 [תיק עבודות](http://localhost:3000/portfolio)
 צור קשר
-📍רחוב הראשי, כפר כנא
+רחוב אכסאל, נצרת
 📞04-6576444
 📱050-5241177
-[📧office@surveyors.co.il](mailto:%F0%9F%93%A7office@surveyors.co.il)
+[📧office@landmap-ltd.com](mailto:%F0%9F%93%A7office@landmap-ltd.com)
 🕒א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00
 © 2026 כל הזכויות שמורות למשרד מדידות סרחאן וחכרוש
 [מדיניות פרטיות](http://localhost:3000/privacy)[תנאי שימוש](http://localhost:3000/terms)
@@ -323,10 +323,10 @@
 050-5241177
 📧
 אימייל
-[office@surveyors.co.il](mailto:office@surveyors.co.il)
+[office@landmap-ltd.com](mailto:office@landmap-ltd.com)
 📍
 כתובת
-רחוב הראשי, כפר כנא
+רחוב אכסאל, נצרת
 שעות פעילות
 ראשון - חמישי: 8:00 - 17:00
 שישי: 8:00 - 13:00
@@ -346,10 +346,10 @@
 [צור קשר](http://localhost:3000/contact)
 [תיק עבודות](http://localhost:3000/portfolio)
 צור קשר
-📍רחוב הראשי, כפר כנא
+רחוב אכסאל, נצרת
 📞04-6576444
 📱050-5241177
-[📧office@surveyors.co.il](mailto:%F0%9F%93%A7office@surveyors.co.il)
+[📧office@landmap-ltd.com](mailto:%F0%9F%93%A7office@landmap-ltd.com)
 🕒א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00
 © 2026 כל הזכויות שמורות למשרד מדידות סרחאן וחכרוש
 [מדיניות פרטיות](http://localhost:3000/privacy)[תנאי שימוש](http://localhost:3000/terms)
@@ -421,7 +421,7 @@ This phase is non-negotiable. If your technical foundation is weak, all other ef
     - Category: **"מודד"** or **"שירותי מדידה"** (choose most specific)
     - Secondary categories: "תכנון והנדסה", "שירותי טופוגרפיה"
     - Phone: **04-6576444** (ensure matches website/footer exactly)
-    - Address: **רחוב הראשי, כפר כנא** (copy-paste from website)
+    - Address: **רחוב אכסאל, נצרת** (copy-paste from website)
     - Website: **must match your site**
     - Hours: Daily 8:00–17:00, Friday 8:00–13:00 (as shown on your site)
     - Service area: Set to **2-hour radius** from Kfar Kana (covers Galilee region)[^1]
