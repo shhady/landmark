@@ -14,13 +14,12 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Critical Path - Loaded Immediately */}
       <Hero />
-      <Services />
       
       {/* Deferred Loading - Loaded on Demand */}
       <WhyChooseUs />
       <Process />
       <FAQ />
-      <CTA />
+      {/* <CTA /> */}
     </main>
   )
 }

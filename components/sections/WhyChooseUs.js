@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 
 const Map = dynamic(() => import('@/components/Map'), { 
   ssr: false,
@@ -60,6 +62,16 @@ export default function WhyChooseUs() {
                 <p className="font-medium text-primary-dark">
                   ב-Landmap הדיוק אינו מטרה בפני עצמה, אלא אמצעי ליצירת תוצאה הנדסית נכונה, שמחזיקה לאורך זמן ומאפשרת ללקוח לקבל החלטות בראש שקט
                 </p>
+              </div>
+
+              <div className="mt-8">
+                <Link 
+                  href="/services" 
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:bg-primary-dark transition-colors"
+                >
+                  <span>לכל השירותים</span>
+                  <ArrowLeft className="w-5 h-5" />
+                </Link>
               </div>
               
               
