@@ -502,7 +502,7 @@ function ProjectModal({ isOpen, onClose, example }) {
                 // PDF View
                 <div className="w-full h-full flex flex-col bg-gray-100">
                     <iframe
-                    src={`${selectedPdf.url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    src={`${selectedPdf.url}#toolbar=1&navpanes=0&view=Fit`}
                     className="w-full flex-1 border-0"
                     title={selectedPdf.name}
                     />
