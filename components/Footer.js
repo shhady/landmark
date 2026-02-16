@@ -9,11 +9,10 @@ export default function Footer() {
     {
       title: 'שירותים',
       links: [
-        { text: 'מדידות קרקע', href: '/services#land' },
-        { text: 'מדידות לתכנון', href: '/services#planning' },
-        { text: 'מדידות לרישום', href: '/services#registration' },
-        { text: 'מדידות הנדסיות', href: '/services#engineering' },
-        { text: 'מיפוי פוטוגרמטרי', href: '/services#photogrammetry' }
+        { text: 'קדסטר ורישום מקרקעין', href: '/services#registration' },
+        { text: 'תכנון סטטוטורי ורישוי', href: '/services#planning' },
+        { text: 'ביצוע פרויקטי תשתיות', href: '/services#engineering' },
+        { text: 'מדידות מתקדמות ובקרה', href: '/services#advanced' }
       ]
     },
     {
