@@ -25,7 +25,7 @@ const createDotIcon = (color = '#3FB8AF') => {
           border-radius: 50%;
           border: 3px solid white;
           box-shadow: 0 0 3px ${color}, 0 2px 6px rgba(0,0,0,0.3);
-          z-index: 1001;
+          z-index: 998;
         "></div>
         <div style="
           position: absolute;

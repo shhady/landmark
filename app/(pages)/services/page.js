@@ -500,11 +500,16 @@ function ProjectModal({ isOpen, onClose, example }) {
                 </div>
                 ) : (
                 // PDF View
-                <div className="w-full h-full flex flex-col bg-gray-100">
+                <div className="w-full h-full flex flex-col bg-gray-100 overflow-auto -webkit-overflow-scrolling-touch">
                     <iframe
-                    src={`${selectedPdf.url}#toolbar=1&navpanes=0&view=Fit`}
-                    className="w-full flex-1 border-0"
+                    src={`${selectedPdf.url}#toolbar=0&navpanes=0&view=FitH`}
+                    className="w-full h-full border-0 min-w-full min-h-full"
                     title={selectedPdf.name}
+                    style={{ 
+                        width: '100%', 
+                        height: '100%',
+                        pointerEvents: 'auto' 
+                    }}
                     />
                 </div>
                 )}

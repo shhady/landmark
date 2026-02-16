@@ -47,7 +47,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 bg-white py-3 shadow-sm `}>
+    <nav className={`sticky top-0 z-[999] transition-all duration-300 bg-white py-3 shadow-sm `}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-12 md:h-12">
           {/* Hamburger Button (Mobile) - Right aligned for RTL */}
