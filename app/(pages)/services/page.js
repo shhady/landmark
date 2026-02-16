@@ -417,7 +417,7 @@ function ProjectModal({ isOpen, onClose, example }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center sm:p-4 bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 z-[3000] flex items-center justify-center sm:p-4 bg-black/60 backdrop-blur-md"
             onClick={onClose}
         >
             <motion.div
@@ -502,7 +502,7 @@ function ProjectModal({ isOpen, onClose, example }) {
                 // PDF View
                 <div className="w-full h-full flex flex-col bg-gray-100 overflow-auto -webkit-overflow-scrolling-touch">
                     <iframe
-                    src={`${selectedPdf.url}#view=FitV&pagemode=none&toolbar=0&navpanes=0`}
+                    src={`${selectedPdf.url}#view=Fit&toolbar=0&navpanes=0`}
                     className="w-full h-full border-0"
                     title={selectedPdf.name}
                     style={{ 
