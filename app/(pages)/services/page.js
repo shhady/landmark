@@ -1,15 +1,22 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState, useRef } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { 
   FileText, ChevronLeft, X, Eye,
   FileSignature, Scale, FileCheck, Box, Map as MapIcon, Calculator, Gavel,
   Ruler, ClipboardList, CheckCircle2, PencilRuler, LayoutTemplate, Globe,
   HardHat, BarChart3, Construction, MapPin,
-  Satellite, Activity, Plane, Scan
+  Satellite, Activity, Plane, Scan,
+  ZoomIn, ZoomOut, Loader2, RotateCw
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Document, Page, pdfjs } from 'react-pdf'
+import 'react-pdf/dist/Page/AnnotationLayer.css'
+import 'react-pdf/dist/Page/TextLayer.css'
+
+// Set up the worker for react-pdf
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 // Data structure based on scanned files
 const projectsData = {
@@ -167,7 +174,7 @@ const projectsData = {
     ]
   },
   'מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא״ת': {
-    description:"מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא\"ת\nמדידות טופוגרפיות ומדידות מצב קיים המשמשות בסיס להכנת תכניות סטטוטוריות, לרבות תב\"ע, בהתאם לנוהל מבא\"ת – המפרט הלאומי האחיד לתכנון, כולל קומפילציה של תכניות מאושרות, הכנת תשריטים למצב נכנס ומצב יוצא, חישובי שטחים וליווי שמאי לצורך הכנת טבלאות הקצאה ואיזון",
+    description: "מדידות טופוגרפיות ומדידות מצב קיים המשמשות בסיס להכנת תכניות סטטוטוריות, לרבות תב״ע, בהתאם לנוהל מבא״ת – המפרט הלאומי האחיד לתכנון, כולל קומפילציה של תכניות מאושרות, הכנת תשריטים למצב נכנס ומצב יוצא, חישובי שטחים וליווי שמאי לצורך הכנת טבלאות הקצאה ואיזון",
     examples: []
   },
   'תוכניות לצרכי רישום - תצר': {
@@ -398,17 +405,56 @@ const allServices = {
 
 function ProjectModal({ isOpen, onClose, example }) {
   const [selectedPdf, setSelectedPdf] = useState(null)
+  const [numPages, setNumPages] = useState(null)
+  const [scale, setScale] = useState(1.0)
+  const [containerWidth, setContainerWidth] = useState(null)
+  const containerRef = useRef(null)
 
   // Reset selected PDF when modal opens or example changes
   useEffect(() => {
     if (isOpen && example) {
-        if (example.files.length === 1) {
-            setSelectedPdf(example.files[0])
-        } else {
-            setSelectedPdf(null)
-        }
+      if (example.files.length === 1) {
+        setSelectedPdf(example.files[0])
+      } else {
+        setSelectedPdf(null)
+      }
+      setScale(1.0) // Reset scale
     }
   }, [isOpen, example])
+
+  // Update container width on resize for "Fit Page" calculation if needed
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth)
+      }
+    }
+
+    updateWidth()
+    window.addEventListener('resize', updateWidth)
+    return () => window.removeEventListener('resize', updateWidth)
+  }, [selectedPdf, isOpen])
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    // Auto-fit logic could go here, but let's start with a reasonable default
+    // or let the user decide.
+    // If on mobile, maybe start slightly zoomed out?
+    if (window.innerWidth < 768) {
+        setScale(0.6); 
+    } else {
+        setScale(1.0);
+    }
+  }
+
+  const zoomIn = () => setScale(prev => Math.min(prev + 0.2, 3.0))
+  const zoomOut = () => setScale(prev => Math.max(prev - 0.2, 0.4))
+  const fitWidth = () => {
+      // Approximate fit width logic or reset
+      setScale(1.0)
+  }
 
   return (
     <AnimatePresence>
@@ -429,34 +475,50 @@ function ProjectModal({ isOpen, onClose, example }) {
             className="bg-white sm:rounded-2xl w-full max-w-6xl h-full sm:h-[85vh] flex flex-col overflow-hidden shadow-2xl relative"
             >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-5 border-b border-gray-100 bg-white/80 backdrop-blur-sm shrink-0 z-10">
+            <div className="flex items-center justify-between p-4 md:p-5 border-b border-gray-100 bg-white/80 backdrop-blur-sm shrink-0 z-10 shadow-sm">
                 <div className="flex items-center gap-3 overflow-hidden">
                     <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
                         <FileText className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800 truncate">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 truncate max-w-[200px] md:max-w-md">
                         {selectedPdf ? selectedPdf.name : example.name}
                     </h3>
                 </div>
                 
                 <div className="flex items-center gap-2 shrink-0">
-                {selectedPdf && example.files.length > 1 && (
+                {selectedPdf ? (
                     <>
-                        <button 
-                        onClick={() => setSelectedPdf(null)}
-                        className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-all"
-                        >
-                        <ChevronLeft className="w-4 h-4" />
-                        <span>חזרה לרשימה</span>
-                        </button>
-                        <button 
-                        onClick={() => setSelectedPdf(null)}
-                        className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
-                        >
-                        <ChevronLeft className="w-6 h-6" />
-                        </button>
+                        {/* Zoom Controls */}
+                        <div className="hidden md:flex items-center bg-gray-100 rounded-lg p-1 mr-2">
+                            <button onClick={zoomOut} className="p-1.5 hover:bg-white rounded-md text-gray-600 transition-all" title="Zoom Out">
+                                <ZoomOut className="w-4 h-4" />
+                            </button>
+                            <span className="text-xs font-medium w-12 text-center">{Math.round(scale * 100)}%</span>
+                            <button onClick={zoomIn} className="p-1.5 hover:bg-white rounded-md text-gray-600 transition-all" title="Zoom In">
+                                <ZoomIn className="w-4 h-4" />
+                            </button>
+                        </div>
+
+                        {example.files.length > 1 && (
+                            <>
+                                <button 
+                                onClick={() => setSelectedPdf(null)}
+                                className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-all"
+                                >
+                                <ChevronLeft className="w-4 h-4" />
+                                <span>חזרה לרשימה</span>
+                                </button>
+                                <button 
+                                onClick={() => setSelectedPdf(null)}
+                                className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                                >
+                                <ChevronLeft className="w-6 h-6" />
+                                </button>
+                            </>
+                        )}
                     </>
-                )}
+                ) : null}
+                
                 <button 
                     onClick={onClose}
                     className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors"
@@ -467,10 +529,13 @@ function ProjectModal({ isOpen, onClose, example }) {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-auto bg-gray-50/50 relative w-full scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+            <div 
+                className="flex-1 overflow-auto bg-gray-100 relative w-full scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent flex justify-center"
+                ref={containerRef}
+            >
                 {!selectedPdf ? (
                 // List View
-                <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full h-fit">
                     {example.files.map((file, idx) => (
                     <motion.button
                         key={idx}
@@ -499,18 +564,47 @@ function ProjectModal({ isOpen, onClose, example }) {
                     ))}
                 </div>
                 ) : (
-                // PDF View
-                <div className="w-full h-full flex flex-col bg-gray-100 overflow-auto -webkit-overflow-scrolling-touch">
-                    <iframe
-                    src={`${selectedPdf.url}#view=Fit&toolbar=0&navpanes=0`}
-                    className="w-full h-full border-0"
-                    title={selectedPdf.name}
-                    style={{ 
-                        width: '100%', 
-                        height: '100%',
-                        pointerEvents: 'auto' 
-                    }}
-                    />
+                // PDF View with react-pdf
+                <div className="relative min-h-full py-8 px-4 flex justify-center">
+                    <Document
+                        file={selectedPdf.url}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                        loading={
+                            <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+                                <Loader2 className="w-10 h-10 animate-spin mb-4" />
+                                <p>טוען מסמך...</p>
+                            </div>
+                        }
+                        error={
+                            <div className="flex flex-col items-center justify-center py-20 text-red-400">
+                                <p>שגיאה בטעינת הקובץ.</p>
+                            </div>
+                        }
+                        className="shadow-xl"
+                    >
+                        {Array.from(new Array(numPages), (el, index) => (
+                            <Page 
+                                key={`page_${index + 1}`} 
+                                pageNumber={index + 1} 
+                                scale={scale}
+                                className="mb-4 bg-white"
+                                renderTextLayer={false}
+                                renderAnnotationLayer={false}
+                                loading=""
+                            />
+                        ))}
+                    </Document>
+
+                    {/* Mobile Zoom Controls (Floating) */}
+                    <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center bg-white/90 backdrop-blur shadow-lg rounded-full px-4 py-2 border border-gray-200 gap-4 z-50">
+                        <button onClick={zoomOut} className="p-2 hover:bg-gray-100 rounded-full text-gray-700">
+                            <ZoomOut className="w-5 h-5" />
+                        </button>
+                        <span className="text-sm font-medium w-10 text-center">{Math.round(scale * 100)}%</span>
+                        <button onClick={zoomIn} className="p-2 hover:bg-gray-100 rounded-full text-gray-700">
+                            <ZoomIn className="w-5 h-5" />
+                        </button>
+                    </div>
                 </div>
                 )}
             </div>
@@ -518,167 +612,5 @@ function ProjectModal({ isOpen, onClose, example }) {
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
-
-function ServicesContent() {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [activeExample, setActiveExample] = useState(null)
-
-  const openModal = (example) => {
-    setActiveExample(example)
-    setModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setModalOpen(false)
-    setActiveExample(null)
-  }
-
-  useEffect(() => {
-    const hash = window.location.hash
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '')
-        const element = document.getElementById(id)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }, 100)
-    }
-  }, [])
-
-  return (
-    <div className="min-h-screen overflow-x-hidden">
-      <ProjectModal 
-        isOpen={modalOpen} 
-        onClose={closeModal} 
-        example={activeExample} 
-      />
-
-      {/* Hero Section */}
-      <section className="bg-[#2c3d50] text-white py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-full">
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">שירותי מדידה מקצועיים</h1>
-            <p className="text-lg md:text-xl text-gray-200">
-              מגוון שירותי מדידה מתקדמים ומקצועיים
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Sections */}
-      {Object.entries(allServices).map(([categoryKey, categoryData], index) => (
-        <section 
-          key={categoryKey}
-          id={categoryKey}
-          className={`py-12 md:py-20 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
-        >
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#2c3d50]">
-                {categoryData.title}
-              </h2>
-              <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                {categoryData.description}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {categoryData.services.map((service, sIndex) => {
-                // Determine the correct project key
-                const projectKey = serviceKeyMapping[categoryKey]?.[sIndex];
-                const projectInfo = projectKey ? projectsData[projectKey] : null;
-                const description = projectInfo ? projectInfo.description : service.desc;
-                const examples = projectInfo ? projectInfo.examples : [];
-
-                return (
-                  <div
-                    key={`${categoryKey}-${sIndex}`}
-                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
-                  >
-                    <div className="p-5 md:p-6 flex-grow flex flex-col">
-                      <div className="flex items-center gap-4 mb-4">
-                        <span className="text-2xl bg-blue-50 p-3 rounded-lg text-blue-600">
-                          {service.icon}
-                        </span>
-                        <h3 className="text-lg md:text-xl font-bold text-[#2c3d50]">
-                          {service.title}
-                        </h3>
-                      </div>
-                      
-                      <p className="text-gray-600 leading-relaxed mb-6 flex-grow text-sm md:text-base">
-                        {description || service.desc}
-                      </p>
-                      
-                      {/* Projects Section - Examples Buttons */}
-                      {examples && examples.length > 0 && (
-                        <div className="mt-auto pt-4 border-t border-gray-100">
-                          <h4 className="text-xs md:text-sm font-bold text-gray-700 mb-3">דוגמאות לפרויקטים:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {examples.map((example, exIndex) => (
-                              <button
-                                key={exIndex}
-                                onClick={() => openModal(example)}
-                                className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg text-xs md:text-sm font-medium transition-colors"
-                              >
-                                <Eye className="w-3 h-3 md:w-4 md:h-4" />
-                                {example.name}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      ))}
-    </div>
-  )
-}
-
-function LoadingFallback() {
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p className="text-gray-600">טוען שירותים...</p>
-      </div>
-    </div>
-  )
-}
-
-function ErrorFallback({ error, resetErrorBoundary }) {
-  return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-red-600 mb-4">שגיאה בטעינת השירותים</h2>
-        <p className="text-gray-600 mb-4">{error.message}</p>
-        <button
-          onClick={resetErrorBoundary}
-          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
-        >
-          נסה שוב
-        </button>
-      </div>
-    </div>
-  )
-}
-
-export default function Services() {
-  return (
-    <ErrorBoundary 
-      FallbackComponent={ErrorFallback}
-      onReset={() => window.location.reload()}
-    >
-      <Suspense fallback={<LoadingFallback />}>
-        <ServicesContent />
-      </Suspense>
-    </ErrorBoundary>
   )
 }
