@@ -97,19 +97,25 @@ const locations = [
   { name: "כפר נאעורה", coords: [32.9500, 35.3333], color: "#10b981" },
   { name: "עילוט", coords: [32.7167, 35.2833], color: "#ef4444" },
   { name: "צפת", coords: [32.9658, 35.4983], color: "#6366f1" },
-  { name: "הרצליה", coords: [32.1656, 34.8431], color: "#f43f5e" }
+  { name: "הרצליה", coords: [32.1656, 34.8431], color: "#f43f5e" },
+  { name: "באר שבע", coords: [31.2518, 34.7913], color: "#06b6d4" },
+  { name: "קריית גת", coords: [31.6100, 34.7642], color: "#ec4899" },
+  { name: "קריית שמונה", coords: [33.2074, 35.5692], color: "#f59e0b" },
+  { name: "בית דגן", coords: [32.0008, 34.8214], color: "#8b5cf6" },
+  { name: "עזריקים", coords: [31.7544, 34.7031], color: "#10b981" }
 ];
 
 export default function Map({ zoom }) {
-  const center = [32.75, 35.25];
+  const center = [31.5, 35.0]; // Adjusted center to show entire country
   
-  // Default zoom based on screen size if not provided
-  let initialZoom = zoom;
-  if (!initialZoom && typeof window !== 'undefined') {
-    initialZoom = window.innerWidth < 768 ? 8.5 : 9.5;
-  }
+  // Default zoom - zoomed out to show full map
+  // let initialZoom = zoom;
+  // if (!initialZoom && typeof window !== 'undefined') {
+  //   initialZoom = window.innerWidth < 768 ? 7 : 7;
+  // }
   // Fallback
-  initialZoom = initialZoom || 9.5;
+  // initialZoom = initialZoom || 7.5;
+  // let initialZoom = 9;
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -221,7 +227,7 @@ export default function Map({ zoom }) {
     }}>
       <MapContainer 
         center={center} 
-        zoom={initialZoom} 
+        zoom={zoom} 
         scrollWheelZoom={true} 
         style={{ 
           height: '100%', 

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 
 const Map = dynamic(() => import('@/components/Map'), { 
@@ -79,8 +80,20 @@ export default function WhyChooseUs() {
           </div>
 
           <div className="lg:w-1/2 relative h-[500px] lg:h-auto">
-             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white h-full w-full">
-               <Map zoom={9} />
+             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white h-full w-full group">
+               {/* Transparent Overlay with Logo */}
+               <div className="absolute inset-0 z-[1000] bg-slate-900/60 flex items-end justify-center pb-12 transition-opacity duration-500 group-hover:opacity-0 pointer-events-none">
+                 <div className="relative w-96 h-36 opacity-50">
+                   <Image 
+                     src="/logo-transparent-landmap.png" 
+                     alt="Landmap" 
+                     fill
+                     className="object-contain brightness-0 invert" 
+                     priority
+                   />
+                 </div>
+               </div>
+               <Map zoom={7} />
              </div>
           </div>
 
