@@ -47,7 +47,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className={`sticky top-0 z-[999] transition-all duration-300 bg-white py-3 shadow-sm `}>
+    <nav className={`sticky top-0 z-[2000] transition-all duration-300 bg-white py-3 shadow-sm `}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-12 md:h-12">
           {/* Hamburger Button (Mobile) - Right aligned for RTL */}
@@ -102,7 +102,7 @@ export default function Navbar() {
           id="sidebar"
           className={`fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
-          } md:hidden z-50`}
+          } md:hidden z-[2001]`}
         >
           <div className="p-6 flex flex-col h-full">
             <div className="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
@@ -147,7 +147,7 @@ export default function Navbar() {
         {/* Mobile Overlay */}
         {isOpen && (
            <div 
-             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden transition-opacity"
+             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[2000] md:hidden transition-opacity"
              onClick={() => setIsOpen(false)}
            ></div>
         )}
