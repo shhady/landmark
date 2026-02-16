@@ -1,6 +1,18 @@
-/** @type {import('next-sitemap').IConfig} */
+const siteUrl = 'https://www.landmap-ltd.com'; // Replace with your actual domain
+
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://example.com',
-  generateRobotsTxt: true,
-  generateIndexSitemap: false,
-} 
+  siteUrl,
+  generateRobotsTxt: true, // (optional)
+  // ...other options
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
+    additionalSitemaps: [
+      `${siteUrl}/sitemap.xml`,
+    ],
+  },
+}

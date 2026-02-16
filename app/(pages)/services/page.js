@@ -1,46 +1,321 @@
 'use client'
 
-import { Suspense, useEffect } from 'react'
-import { Background } from '@/components/Background'
+import { Suspense, useEffect, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { 
+  FileText, ChevronLeft, X, Eye,
+  FileSignature, Scale, FileCheck, Box, Map as MapIcon, Calculator, Gavel,
+  Ruler, ClipboardList, CheckCircle2, PencilRuler, LayoutTemplate, Globe,
+  HardHat, BarChart3, Construction, MapPin,
+  Satellite, Activity, Plane, Scan
+} from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-// Move allServices outside the component
+// Data structure based on scanned files
+const projectsData = {
+  'הסדר מקרקעין': {
+    description: "מדידות לצורך הסדר זכויות במקרקעין, קביעת גבולות משפטיים ותיעוד מצב קיים בהתאם לדרישות פקיד ההסדר והמרכז למיפוי ישראל.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "תכנית הסדר - חלק 1", url: "/updated-projects/הסדר מקרקעין/1/12900-MOKDEMET-FINAL-Gil-1.pdf" },
+          { name: "תכנית הסדר - חלק 2", url: "/updated-projects/הסדר מקרקעין/1/12900-MOKDEMET-FINAL-Gil-2.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "תכנית הסדר", url: "/updated-projects/הסדר מקרקעין/2/12901-MOKDEMET-FINAL-Gil-1.pdf" }
+        ]
+      }
+    ]
+  },
+  'חישובי כמויות': {
+    description: "חישוב מדויק של כמויות עפר, חפירה, מילוי ואלמנטים הנדסיים, לצורכי תמחור, בקרה וליווי פרויקטים בביצוע.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "חישוב כמויות עפר", url: "/updated-projects/חישובי כמויות/1/חישוב כמויות עפר - ערימה מקרקע קיימת-Gil-2.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "חישוב כמויות - K242", url: "/updated-projects/חישובי כמויות/2/H-60-2025-K242_2025.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידה לצורך ניטור דפורמציות': {
+    description: "מדידות תקופתיות למעקב אחר שקיעות, תזוזות ושינויים גאומטריים במבנים, אלמנטים הנדסיים, קרקע ותשתיות, לצורך בקרה הנדסית ובטיחותית.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "דוח ניטור תזוזות ושקיעות", url: "/updated-projects/מדידה לצורך ניטור דפורמציות/1/דוח ניטור תזוזות ושקיעות לקיר תומך - מעגן מיכאל.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידה לצורך תכנון': {
+    description: "מדידות טופוגרפיות מפורטות המשמשות בסיס לתכנון אדריכלי והנדסי, כולל תשתיות, גבהים, גבולות ומצב קיים.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "מדידת ניין - מודל", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-Model.pdf" },
+          { name: "מדידת ניין - נספח", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-NESPAH.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות באמצעות סורק לייזר': {
+    description: "סריקות תלת־ממד מתקדמות להפקת ענני נקודות, מודלים מדויקים ותיעוד מפורט של מבנים, תשתיות וסביבות מורכבות.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "חתך 1.20", url: "/updated-projects/מדידות באמצעות סורק לייזר/1/M-PS-47-2024-SEC 1.20-RSHLZ-Gil3.pdf" },
+          { name: "חתך 2.50", url: "/updated-projects/מדידות באמצעות סורק לייזר/1/M-PS-47-2024-SEC 2.50-RSHLZ-Gil2.pdf" },
+          { name: "חתך A", url: "/updated-projects/מדידות באמצעות סורק לייזר/1/M-PS-47-2024-SEC_A-RSHLZ-Gil4.pdf" },
+          { name: "חתך B", url: "/updated-projects/מדידות באמצעות סורק לייזר/1/M-PS-47-2024-SEC_B-RSHLZ-Gil5.pdf" },
+          { name: "מבט על", url: "/updated-projects/מדידות באמצעות סורק לייזר/1/M-PS-47-2024-TOP_VIEW-RSHLZ-Gil1.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות באמצעות רחפן': {
+    description: "מדידות אוויריות לצורכי מיפוי, חישובי כמויות, תיעוד שטחים גדולים מעקב התקדמות בפרויקטים מורכבים, בדיוק גבוה ובזמן קצר.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "אורתופוטו - חיפה", url: "/updated-projects/מדידות באמצעות רחפן/1/M-HAIFA-HISDER-ORTHO.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "מודל כבשני", url: "/updated-projects/מדידות באמצעות רחפן/2/M-KABSHANI-F-Model.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 3",
+        files: [
+          { name: "מדידת רחפן", url: "/updated-projects/מדידות באמצעות רחפן/3/TH -18970 - 63 _FINAL-DRONE.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות להיתרי בניה בנוהל רישוי זמין': {
+    description: "מדידות לצורך הגשת בקשות להיתרי בנייה, כולל מצב קיים, סימון גבולות, קווי בניין והתאמה לנוהל רישוי זמין ולדרישות הוועדות.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "היתר בנייה - עכו", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/1/M-AKKO-24-06-2025_V3-Model.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "היתר בנייה - כעביה", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/2/76-2022 - כעביה.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 3",
+        files: [
+          { name: "היתר בנייה - רז", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/3/M-RZ-10-12-25_87-2025.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות לטופס 4 - אישור איכלוס': {
+    description: "מדידות בקרה בסיום פרויקט, לאימות התאמה בין הביצוע להיתרים ולתכניות המאושרות, כחלק מהליך קבלת טופס 4.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "טופס 4 - יפיע", url: "/updated-projects/מדידות לטופס 4 - אישור איכלוס/1/MK-2025-28-04-Yaffa-TOFES-4-FINAL-Model.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות פנים': {
+    description: "מדידות מדויקות של שטחים וחללים פנימיים, פתחים, גבהים ומחיצות, תשתיות, לצורכי תכנון, רישוי, שיפוץ וארנונה.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "מדידת As-Made", url: "/updated-projects/מדידות פנים/1/MP-AsMade-7-2023-Signed.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "מדידת בית רב קומות", url: "/updated-projects/מדידות פנים/2/מדידת בית רב קומות לעיצוב אדריכלי וקונסטרוקטיבי.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 3",
+        files: [
+          { name: "מדידה בהרצליה", url: "/updated-projects/מדידות פנים/3/MP-107-2026-HERTZILIYA.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא״ת': {
+    description:"מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא\"ת\nמדידות טופוגרפיות ומדידות מצב קיים המשמשות בסיס להכנת תכניות סטטוטוריות, לרבות תב\"ע, בהתאם לנוהל מבא\"ת – המפרט הלאומי האחיד לתכנון, כולל קומפילציה של תכניות מאושרות, הכנת תשריטים למצב נכנס ומצב יוצא, חישובי שטחים וליווי שמאי לצורך הכנת טבלאות הקצאה ואיזון",
+    examples: []
+  },
+  'תוכניות לצרכי רישום - תצר': {
+    description: "הכנת תכניות לצרכי רישום לחלוקה, איחוד ורישום זכויות במקרקעין, בהתאם לתוכניות מאושרות ולדרישות המרכז למיפוי ישראל והטאבו.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "תצ״ר מודל", url: "/updated-projects/תוכניות לצרכי רישום - תצר/1/503-2023-Model.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "תצ״ר - דוגמא 2", url: "/updated-projects/תוכניות לצרכי רישום - תצר/2/1994-2023_6075-S1.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 3",
+        files: [
+          { name: "תצ״ר חתום", url: "/updated-projects/תוכניות לצרכי רישום - תצר/3/792-2023-SIGNED.pdf" }
+        ]
+      }
+    ]
+  },
+  'תכנית לצרכי רישום תלת־ממדית -תמ״ר': {
+    description: "תכנית המייצרת חלקות תלת-ממדיות ומאפשרת רישום זכויות קניין מרחביות, וכן תכניות הכוללות איחוד וחלוקה של חלקה תלת-ממדית",
+    examples: []
+  },
+  'תרשימי עזר - חישוב גבולות אנליטיים': {
+    description: "תרשימי עזר לחישוב וקביעת גבולות אנליטיים, המשמשים בסיס לתכניות המשתרעות מחלקה בודדת ועד גושים רבים, תוך ביצוע חישוב מדויק ומבוקר",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "תרשים עזר - אור עקיבא", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/1/TARSHEM-EZER-ALL-אור עקיבא.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 2",
+        files: [
+          { name: "תרשים עזר - ניין", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/2/tarshim-azer-ניין.pdf" }
+        ]
+      },
+      {
+        name: "דוגמה 3",
+        files: [
+          { name: "תרשים עזר - גלגוליה", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/3/TarshimEZER-FINAL-גלגוליה.pdf" }
+        ]
+      }
+    ]
+  },
+  'תשריטים לצורך חוות דעת משפטית': {
+    description: "הכנת חוות דעת משפטית, באמצעות, הכנת תשריטים המבוססים על מדידות מדויקות, ותיעודים למחלוקות שונות והצגת ממצאים מקצועיים לבית משפט.",
+    examples: []
+  },
+  'תשריטים לתיעוד גבולות- תתג': {
+    description: "הכנת תשריט אשר מתעד באופן מדויק את גבולותיה של חלקה או נכס. הוא משמש להגדרת זכויות קניין, פתרון סכסוכי גבולות, בסיס להכנת תכניות סטטוטוריות.",
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "תת״ג מודל", url: "/updated-projects/תשריטים לתיעוד גבולות- תתג/1/1410-2022-Model.pdf" }
+        ]
+      }
+    ]
+  },
+  'מדידות לליווי פרויקטים': {
+    description: 'ליווי צמוד של אתרי בנייה, מתן מענה למודדים בשטח ופתרון סוגיות הנדסיות בזמן אמת.',
+    examples: []
+  },
+  'סימון והתוויה בשטח': {
+    description: 'סימון צירים, כלונסאות, גבולות חפירה ואלמנטים הנדסיים בשטח לקבלנים ולמבצעים.',
+    examples: []
+  },
+  'מפות עדות (As-Made)': {
+    description: 'מדידת המצב הסופי לאחר הביצוע והפקת תוכניות עדות לקבלן ולמזמין.',
+    examples: [
+      {
+        name: "דוגמה 1",
+        files: [
+          { name: "מדידת As-Made", url: "/updated-projects/מדידות פנים/1/MP-AsMade-7-2023-Signed.pdf" }
+        ]
+      }
+    ]
+  }
+}
+
+// Map the keys used in allServices to the project keys
+const serviceKeyMapping = {
+  'registration': {
+    0: 'הסדר מקרקעין',
+    1: 'תוכניות לצרכי רישום - תצר',
+    2: 'תכנית לצרכי רישום תלת־ממדית -תמ״ר',
+    3: 'תשריטים לתיעוד גבולות- תתג',
+    4: 'תרשימי עזר - חישוב גבולות אנליטיים',
+    5: 'תשריטים לצורך חוות דעת משפטית'
+  },
+  'planning': {
+    0: 'מדידות להיתרי בניה בנוהל רישוי זמין',
+    1: 'מדידות לטופס 4 - אישור איכלוס',
+    2: 'מדידה לצורך תכנון',
+    3: 'מדידות פנים',
+    4: 'מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא״ת'
+  },
+  'engineering': {
+    0: 'חישובי כמויות',
+    1: 'מדידות לליווי פרויקטים',
+    2: 'סימון והתוויה בשטח',
+    3: 'מפות עדות (As-Made)'
+  },
+  'advanced': {
+    0: 'מדידה לצורך ניטור דפורמציות',
+    1: 'מדידות באמצעות רחפן',
+    2: 'מדידות באמצעות סורק לייזר'
+  }
+}
+
 const allServices = {
   'registration': {
     title: 'קדסטר ורישום מקרקעין',
     description: `הסדרת זכויות במקרקעין דורשת דיוק, בקיאות משפטית והתנהלות מול גופי הרישום. 
     אנו מספקים מעטפת מלאה של שירותי קדסטר מתקדמים להסדרת גבולות ורישום זכויות בטאבו.`,
-    icon: '📜',
+    icon: <FileSignature className="w-6 h-6" />,
     services: [
       { 
         title: 'הסדר מקרקעין', 
-        desc: 'ליווי הליכי הסדר ורישום ראשוני של קרקעות, כולל בירור זכויות והכנת תשריטים לרישום.',
-        icon: '⚖️' 
+        icon: <Scale className="w-6 h-6" /> 
       },
       { 
         title: 'תכניות לצרכי רישום (תצ״ר)', 
-        desc: 'הכנת תוכניות חלוקה ואיחוד (פרצלציה) המאושרות ע"י המרכז למיפוי ישראל ומשמשות לרישום בטאבו.',
-        icon: '📄' 
+        icon: <FileCheck className="w-6 h-6" /> 
       },
       { 
         title: 'תכנית לצרכי רישום תלת־ממדית (תמ״ר)', 
-        desc: 'מיפוי ורישום של חלקות תלת-ממדיות (כגון מנהרות, גשרים וחניונים תת-קרקעיים) ברישום המקרקעין.',
-        icon: '🧊' 
+        icon: <Box className="w-6 h-6" /> 
       },
       { 
         title: 'תשריט לתיעוד גבולות (תת״ג)', 
-        desc: 'שחזור גבולות חלקה מדויק בהתאם לנתוני קדסטר היסטוריים ומדידות עדכניות.',
-        icon: '📏' 
+        icon: <MapIcon className="w-6 h-6" /> 
       },
       { 
         title: 'תרשימי עזר – חישוב גבולות אנליטיים', 
-        desc: 'חישוב מתמטי מדויק של גבולות החלקה כבסיס לתכנון או לפתרון מחלוקות גבול.',
-        icon: '🧮' 
+        icon: <Calculator className="w-6 h-6" /> 
       },
       { 
         title: 'חוות דעת משפטית', 
-        desc: 'עריכת חוות דעת מומחה לבתי משפט בסכסוכי גבולות, פלישות ותביעות מקרקעין.',
-        icon: '👨‍⚖️' 
+        icon: <Gavel className="w-6 h-6" /> 
       }
     ]
   },
@@ -48,27 +323,27 @@ const allServices = {
     title: 'תכנון סטטוטורי ורישוי',
     description: `מדידה היא הבסיס לכל הליך תכנוני. אנו מספקים מפות מדידה מדויקות להיתרי בנייה, 
     תב"עות וטופס 4, תוך עמידה בהנחיות מנהל התכנון והוועדות המקומיות.`,
-    icon: '🏗️',
+    icon: <Ruler className="w-6 h-6" />,
     services: [
       { 
         title: 'מדידות להיתרי בנייה', 
-        desc: 'הכנת מפה טופוגרפית להיתר בנייה הכוללת את כל פרטי השטח, גבהים וגבולות המגרש.',
-        icon: '📋' 
+        icon: <ClipboardList className="w-6 h-6" /> 
       },
       { 
         title: 'מדידות לטופס 4 (אישור אכלוס)', 
-        desc: 'מדידה סופית לאישור אכלוס המבנה (As-Made) והשוואה להיתר הבנייה המקורי.',
-        icon: '✅' 
+        icon: <CheckCircle2 className="w-6 h-6" /> 
       },
       { 
         title: 'מדידות לצורך תכנון הנדסי', 
-        desc: 'מדידות רקע מפורטות לאדריכלים ומתכננים לצורך תכנון בתים, כבישים ותשתיות.',
-        icon: '📐' 
+        icon: <PencilRuler className="w-6 h-6" /> 
+      },
+      { 
+        title: 'מדידות פנים', 
+        icon: <LayoutTemplate className="w-6 h-6" />
       },
       { 
         title: 'מדידות רקע לתכניות סטטוטוריות', 
-        desc: 'הכנת מפות רקע לתב"ע (תוכנית בניין עיר) בהתאם לנוהל מבא״ת (מבנה אחיד לתוכניות).',
-        icon: '🗺️' 
+        icon: <Globe className="w-6 h-6" /> 
       }
     ]
   },
@@ -76,27 +351,26 @@ const allServices = {
     title: 'ביצוע פרויקטי תשתיות וליווי הנדסי',
     description: `ליווי שוטף של פרויקטים הנדסיים מורכבים, מכבישים וגשרים ועד למבני מגורים ומסחר. 
     אנו מספקים שירותי מדידה לביצוע, חישובי כמויות ובקרת איכות בזמן אמת.`,
-    icon: '👷',
+    icon: <HardHat className="w-6 h-6" />,
     services: [
       { 
         title: 'חישובי כמויות', 
-        desc: 'חישוב מדויק של כמויות עפר (חפירה ומילוי) וחומרי בנייה לצורך התחשבנות ובקרה תקציבית.',
-        icon: '🔢' 
+        icon: <BarChart3 className="w-6 h-6" /> 
       },
       { 
         title: 'מדידות לליווי פרויקטים', 
         desc: 'ליווי צמוד של אתרי בנייה, מתן מענה למודדים בשטח ופתרון סוגיות הנדסיות בזמן אמת.',
-        icon: '🏗️' 
+        icon: <Construction className="w-6 h-6" /> 
       },
       { 
         title: 'סימון והתוויה בשטח', 
         desc: 'סימון צירים, כלונסאות, גבולות חפירה ואלמנטים הנדסיים בשטח לקבלנים ולמבצעים.',
-        icon: '📍' 
+        icon: <MapPin className="w-6 h-6" /> 
       },
       { 
         title: 'מפות עדות (As-Made)', 
         desc: 'מדידת המצב הסופי לאחר הביצוע והפקת תוכניות עדות לקבלן ולמזמין.',
-        icon: '📝' 
+        icon: <FileCheck className="w-6 h-6" /> 
       }
     ]
   },
@@ -104,28 +378,158 @@ const allServices = {
     title: 'מדידות מתקדמות ובקרה',
     description: `שימוש בטכנולוגיות המדידה המתקדמות בעולם למיפוי מדויק, מהיר ומפורט. 
     פתרונות חכמים לפרויקטים הדורשים רמת דיוק קיצונית וניתוח נתונים מורכב.`,
-    icon: '🛰️',
+    icon: <Satellite className="w-6 h-6" />,
     services: [
       { 
         title: 'ניטור דפורמציות', 
-        desc: 'מדידות מדויקות לזיהוי שקיעות, תזוזות ועיוותים במבנים, גשרים וסכרים לאורך זמן.',
-        icon: '📉' 
+        icon: <Activity className="w-6 h-6" /> 
       },
       { 
         title: 'מדידות באמצעות רחפנים', 
-        desc: 'מיפוי אווירי פוטוגרמטרי ברזולוציה גבוהה, אורתופוטו והפקת מודלים תלת-ממדיים של השטח.',
-        icon: '🚁' 
+        icon: <Plane className="w-6 h-6" /> 
       },
       { 
         title: 'סריקות לייזר (LiDAR)', 
-        desc: 'סריקת תלת-ממד של מבנים ומתחמים מורכבים ליצירת "ענן נקודות" ומודלים ממוחשבים (BIM).',
-        icon: '📡' 
+        icon: <Scan className="w-6 h-6" /> 
       }
     ]
   }
 }
 
+function ProjectModal({ isOpen, onClose, example }) {
+  const [selectedPdf, setSelectedPdf] = useState(null)
+
+  // Reset selected PDF when modal opens or example changes
+  useEffect(() => {
+    if (isOpen && example) {
+        if (example.files.length === 1) {
+            setSelectedPdf(example.files[0])
+        } else {
+            setSelectedPdf(null)
+        }
+    }
+  }, [isOpen, example])
+
+  return (
+    <AnimatePresence>
+      {isOpen && example && (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center sm:p-4 bg-black/60 backdrop-blur-md"
+            onClick={onClose}
+        >
+            <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white sm:rounded-2xl w-full max-w-6xl h-full sm:h-[85vh] flex flex-col overflow-hidden shadow-2xl relative"
+            >
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 md:p-5 border-b border-gray-100 bg-white/80 backdrop-blur-sm shrink-0 z-10">
+                <div className="flex items-center gap-3 overflow-hidden">
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                        <FileText className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 truncate">
+                        {selectedPdf ? selectedPdf.name : example.name}
+                    </h3>
+                </div>
+                
+                <div className="flex items-center gap-2 shrink-0">
+                {selectedPdf && example.files.length > 1 && (
+                    <>
+                        <button 
+                        onClick={() => setSelectedPdf(null)}
+                        className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-all"
+                        >
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>חזרה לרשימה</span>
+                        </button>
+                        <button 
+                        onClick={() => setSelectedPdf(null)}
+                        className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                        >
+                        <ChevronLeft className="w-6 h-6" />
+                        </button>
+                    </>
+                )}
+                <button 
+                    onClick={onClose}
+                    className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors"
+                >
+                    <X className="w-6 h-6" />
+                </button>
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-auto bg-gray-50/50 relative w-full scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+                {!selectedPdf ? (
+                // List View
+                <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    {example.files.map((file, idx) => (
+                    <motion.button
+                        key={idx}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        onClick={() => setSelectedPdf(file)}
+                        className="group flex flex-col items-center gap-4 p-6 md:p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 text-center relative overflow-hidden w-full"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-blue-500 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-300 flex items-center justify-center shadow-inner relative z-10">
+                            <FileText className="w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                        
+                        <div className="space-y-2 relative z-10 w-full">
+                            <span className="block font-bold text-gray-800 text-base md:text-lg group-hover:text-blue-700 transition-colors truncate w-full">
+                                {file.name}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 text-xs md:text-sm text-gray-500 font-medium bg-gray-100 px-3 py-1 rounded-full group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
+                                <Eye className="w-3 h-3 md:w-4 md:h-4" />
+                                לחץ לצפייה
+                            </span>
+                        </div>
+                    </motion.button>
+                    ))}
+                </div>
+                ) : (
+                // PDF View
+                <div className="w-full h-full flex flex-col bg-gray-100">
+                    <iframe
+                    src={`${selectedPdf.url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    className="w-full flex-1 border-0"
+                    title={selectedPdf.name}
+                    />
+                </div>
+                )}
+            </div>
+            </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 function ServicesContent() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [activeExample, setActiveExample] = useState(null)
+
+  const openModal = (example) => {
+    setActiveExample(example)
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+    setActiveExample(null)
+  }
+
   useEffect(() => {
     const hash = window.location.hash
     if (hash) {
@@ -141,12 +545,18 @@ function ServicesContent() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <ProjectModal 
+        isOpen={modalOpen} 
+        onClose={closeModal} 
+        example={activeExample} 
+      />
+
       {/* Hero Section */}
-      <section className="bg-[#2c3d50] text-white py-16">
+      <section className="bg-[#2c3d50] text-white py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-full">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-6">שירותי מדידה מקצועיים</h1>
-            <p className="text-xl">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">שירותי מדידה מקצועיים</h1>
+            <p className="text-lg md:text-xl text-gray-200">
               מגוון שירותי מדידה מתקדמים ומקצועיים
             </p>
           </div>
@@ -154,43 +564,71 @@ function ServicesContent() {
       </section>
 
       {/* Services Sections */}
-      {Object.entries(allServices).map(([key, categoryData], index) => (
+      {Object.entries(allServices).map(([categoryKey, categoryData], index) => (
         <section 
-          key={key}
-          id={key}
-          className={`py-20 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+          key={categoryKey}
+          id={categoryKey}
+          className={`py-12 md:py-20 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
         >
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 text-[#2c3d50]">
+            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#2c3d50]">
                 {categoryData.title}
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {categoryData.description}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {categoryData.services.map((service, index) => (
-                <div
-                  key={`${key}-${index}`}
-                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-                >
-                  <div className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-2xl bg-blue-50 p-3 rounded-lg text-blue-600">
-                        {service.icon}
-                      </span>
-                      <h3 className="text-xl font-bold text-[#2c3d50]">
-                        {service.title}
-                      </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {categoryData.services.map((service, sIndex) => {
+                // Determine the correct project key
+                const projectKey = serviceKeyMapping[categoryKey]?.[sIndex];
+                const projectInfo = projectKey ? projectsData[projectKey] : null;
+                const description = projectInfo ? projectInfo.description : service.desc;
+                const examples = projectInfo ? projectInfo.examples : [];
+
+                return (
+                  <div
+                    key={`${categoryKey}-${sIndex}`}
+                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+                  >
+                    <div className="p-5 md:p-6 flex-grow flex flex-col">
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-2xl bg-blue-50 p-3 rounded-lg text-blue-600">
+                          {service.icon}
+                        </span>
+                        <h3 className="text-lg md:text-xl font-bold text-[#2c3d50]">
+                          {service.title}
+                        </h3>
+                      </div>
+                      
+                      <p className="text-gray-600 leading-relaxed mb-6 flex-grow text-sm md:text-base">
+                        {description || service.desc}
+                      </p>
+                      
+                      {/* Projects Section - Examples Buttons */}
+                      {examples && examples.length > 0 && (
+                        <div className="mt-auto pt-4 border-t border-gray-100">
+                          <h4 className="text-xs md:text-sm font-bold text-gray-700 mb-3">דוגמאות לפרויקטים:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {examples.map((example, exIndex) => (
+                              <button
+                                key={exIndex}
+                                onClick={() => openModal(example)}
+                                className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg text-xs md:text-sm font-medium transition-colors"
+                              >
+                                <Eye className="w-3 h-3 md:w-4 md:h-4" />
+                                {example.name}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
-                      {service.desc}
-                    </p>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -238,4 +676,4 @@ export default function Services() {
       </Suspense>
     </ErrorBoundary>
   )
-} 
+}

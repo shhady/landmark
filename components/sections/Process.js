@@ -1,33 +1,34 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { MessageSquare, Scan, Monitor, CheckCircle, Package } from 'lucide-react'
 
 export default function Process() {
   const steps = [
     { 
       title: "1. ייעוץ ראשוני", 
-      desc: "הבנת צורכי הפרויקט, היקף העבודה והדרישות התכנוניות והרגולטוריות.",
-      icon: "💬"
+      desc: "הבנת צרכי הפרויקט, היקף העבודה והדרישות התכנוניות והרגולטוריות.",
+      icon: <MessageSquare className="w-8 h-8 text-primary" />
     },
     { 
       title: "2. מדידה בשטח", 
       desc: "לאחר היתכנות ובדיקה משרדית, צוותי המדידה מגיעים לשטח למדידה באמצעות הציוד המתאים.",
-      icon: "🛰️"
+      icon: <Scan className="w-8 h-8 text-primary" />
     },
     { 
       title: "3. עיבוד נתונים במשרד", 
       desc: "עיבוד, ניתוח והפקת תוצרים בהתאם לבקשת המזמין.",
-      icon: "💻"
+      icon: <Monitor className="w-8 h-8 text-primary" />
     },
     { 
       title: "4. בקרת איכות", 
       desc: "בדיקה קפדנית ואימות הנתונים על ידי מודד מוסמך, וחתימה על התוכניות.",
-      icon: "✅"
+      icon: <CheckCircle className="w-8 h-8 text-primary" />
     },
     { 
       title: "5. מסירת תוצרים", 
       desc: "מסירת תיק מדידה מלא, מוכן להגשה ולשימוש.",
-      icon: "📦"
+      icon: <Package className="w-8 h-8 text-primary" />
     },
   ]
 

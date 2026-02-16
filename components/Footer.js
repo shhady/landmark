@@ -20,9 +20,8 @@ export default function Footer() {
       title: 'מידע',
       links: [
         { text: 'אודות', href: '/about' },
-        { text: 'בלוג', href: '/blog' },
-        { text: 'צור קשר', href: '/contact' },
-        { text: 'תיק עבודות', href: '/portfolio' }
+        // { text: 'בלוג', href: '/blog' },
+        { text: 'צור קשר', href: '/contact' }
       ]
     },
     {
@@ -128,14 +127,14 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               © {new Date().getFullYear()} כל הזכויות שמורות ללאנדמאפ שירותי הנדסה ומדידות בע״מ
             </p>
-            <div className="flex gap-6 text-sm text-gray-400">
+            {/* <div className="flex gap-6 text-sm text-gray-400">
               <Link href="/privacy" className="hover:text-white transition-colors">
                 מדיניות פרטיות
               </Link>
               <Link href="/terms" className="hover:text-white transition-colors">
                 תנאי שימוש
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

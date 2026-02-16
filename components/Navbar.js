@@ -43,8 +43,6 @@ export default function Navbar() {
     { href: '/', label: 'דף הבית' },
     { href: '/about', label: 'אודות' },
     { href: '/services', label: 'שירותים' },
-    { href: '/portfolio', label: 'תיק עבודות' },
-    { href: '/blog', label: 'בלוג' },
     { href: '/contact', label: 'צור קשר' },
   ]
 

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.landmap-ltd.com
+
+# Sitemaps
+Sitemap: https://www.landmap-ltd.com/sitemap.xml
