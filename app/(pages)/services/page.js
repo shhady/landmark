@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState, useRef } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { 
   FileText, ChevronLeft, X, Eye,
@@ -8,15 +8,9 @@ import {
   Ruler, ClipboardList, CheckCircle2, PencilRuler, LayoutTemplate, Globe,
   HardHat, BarChart3, Construction, MapPin,
   Satellite, Activity, Plane, Scan,
-  ZoomIn, ZoomOut, Loader2, RotateCw
+  Loader2, RotateCw
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Document, Page, pdfjs } from 'react-pdf'
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
-
-// Set up the worker for react-pdf
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 // Data structure based on scanned files
 const projectsData = {
@@ -174,7 +168,8 @@ const projectsData = {
     ]
   },
   'מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא״ת': {
-    description: "מדידות טופוגרפיות ומדידות מצב קיים המשמשות בסיס להכנת תכניות סטטוטוריות, לרבות תב״ע, בהתאם לנוהל מבא״ת – המפרט הלאומי האחיד לתכנון, כולל קומפילציה של תכניות מאושרות, הכנת תשריטים למצב נכנס ומצב יוצא, חישובי שטחים וליווי שמאי לצורך הכנת טבלאות הקצאה ואיזון",
+    description: `מדידות רקע לתכניות סטטוטוריות לפי נוהל מבא״ת
+מדידות טופוגרפיות ומדידות מצב קיים המשמשות בסיס להכנת תכניות סטטוטוריות, לרבות תב״ע, בהתאם לנוהל מבא״ת – המפרט הלאומי האחיד לתכנון, כולל קומפילציה של תכניות מאושרות, הכנת תשריטים למצב נכנס ומצב יוצא, חישובי שטחים וליווי שמאי לצורך הכנת טבלאות הקצאה ואיזון`,
     examples: []
   },
   'תוכניות לצרכי רישום - תצר': {
@@ -396,19 +391,213 @@ const allServices = {
         icon: <Plane className="w-6 h-6" /> 
       },
       { 
-        title: 'סריקות לייזר (LiDAR)', 
+        title: 'סריקות לייזר', 
         icon: <Scan className="w-6 h-6" /> 
       }
     ]
   }
 }
 
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center px-4">
+      <div className="w-full max-w-xl rounded-2xl border border-red-100 bg-red-50 p-6 text-right">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <h2 className="text-lg font-bold text-red-800">משהו השתבש</h2>
+            <p className="text-sm text-red-700/90">
+              אירעה שגיאה בעת טעינת עמוד השירותים. ניתן לנסות שוב.
+            </p>
+          </div>
+          <button
+            onClick={resetErrorBoundary}
+            className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-red-700 shadow-sm ring-1 ring-red-200 hover:bg-red-50 transition"
+          >
+            <RotateCw className="w-4 h-4" />
+            נסה שוב
+          </button>
+        </div>
+
+        <pre className="mt-4 max-h-40 overflow-auto rounded-xl bg-white/70 p-3 text-xs text-red-900/80 ring-1 ring-red-200">
+          {String(error?.message || error)}
+        </pre>
+      </div>
+    </div>
+  )
+}
+
+function ServicesPageInner() {
+  const categories = [
+    { key: 'registration' },
+    { key: 'planning' },
+    { key: 'engineering' },
+    { key: 'advanced' },
+  ]
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeExample, setActiveExample] = useState(null)
+  const [toast, setToast] = useState(null)
+
+  useEffect(() => {
+    if (!toast) return
+    const t = setTimeout(() => setToast(null), 2500)
+    return () => clearTimeout(t)
+  }, [toast])
+
+  const openExample = (example) => {
+    if (!example || !example.files?.length) {
+      setToast('דוגמאות לשירות זה יועלו בהמשך')
+      return
+    }
+
+    setActiveExample(example)
+    setIsModalOpen(true)
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-neutral-50 to-white">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
+        <div className="container mx-auto px-4 py-16 md:py-20 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl text-right"
+          >
+            <h1 className="text-4xl md:text-5xl font-black text-neutral-900">השירותים שלנו</h1>
+            <p className="mt-4 text-lg md:text-xl text-neutral-600 leading-relaxed">
+              מעטפת מלאה של שירותי מדידה, קדסטר ותכנון — עם דיוק, שקיפות וליווי צמוד לכל אורך הדרך.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content: render ALL categories as sections */}
+      <section className="container mx-auto px-4 py-12 md:py-14">
+        <div className="max-w-6xl space-y-14">
+          {categories.map(({ key }) => {
+            const category = allServices?.[key]
+            const services = category?.services || []
+
+            return (
+              <div key={key} className="scroll-mt-24" id={key}>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.35 }}
+                  className="text-right"
+                >
+                  <div className="flex items-center justify-start gap-3">
+                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-2xl bg-blue-50 text-blue-600">
+                      {category?.icon}
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-neutral-900">{category?.title}</h2>
+                  </div>
+                  {category?.description && (
+                    <p className="mt-3 text-neutral-600 leading-relaxed whitespace-pre-line">
+                      {category.description}
+                    </p>
+                  )}
+                </motion.div>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  {services.map((s, idx) => {
+                    const projectKey = serviceKeyMapping?.[key]?.[idx]
+                    const examples = projectKey ? (projectsData?.[projectKey]?.examples || []) : []
+                    const projectDescription = projectKey ? projectsData?.[projectKey]?.description : null
+
+                    return (
+                      <motion.div
+                        key={`${key}-${idx}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ delay: idx * 0.02 }}
+                        className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-lg transition"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                            {s.icon}
+                          </div>
+                          <div className="text-right">
+                            <h3 className="font-extrabold text-neutral-900">{s.title}</h3>
+                            {(projectDescription || s.desc) && (
+                              <p className="mt-2 text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
+                                {projectDescription || s.desc}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Examples buttons: דוגמה 1/2/3... based on folders */}
+                        <div className="mt-5">
+                          {examples.length ? (
+                            <div className="flex flex-wrap items-center justify-start gap-2">
+                              {examples.map((ex, exIdx) => (
+                                <button
+                                  key={`${key}-${idx}-ex-${exIdx}`}
+                                  onClick={() => openExample(ex)}
+                                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3.5 py-2 text-sm font-bold text-white hover:bg-blue-700 transition"
+                                  title={ex.files?.length === 1 ? 'פתח PDF' : 'בחר קובץ'}
+                                >
+                                  <Eye className="w-4 h-4" />
+                                  {ex.name || `דוגמה ${exIdx + 1}`}
+                                </button>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+       
+      </section>
+
+      {/* Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            className="fixed bottom-6 left-6 z-[3500] max-w-[90vw] rounded-2xl bg-neutral-900 text-white px-4 py-3 shadow-xl"
+          >
+            <p className="text-sm font-semibold">{toast}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        example={activeExample}
+      />
+    </div>
+  )
+}
+
+export default function ServicesPage() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Suspense fallback={<div className="min-h-[60vh]" />}>
+        <ServicesPageInner />
+      </Suspense>
+    </ErrorBoundary>
+  )
+}
+
 function ProjectModal({ isOpen, onClose, example }) {
   const [selectedPdf, setSelectedPdf] = useState(null)
-  const [numPages, setNumPages] = useState(null)
-  const [scale, setScale] = useState(1.0)
-  const [containerWidth, setContainerWidth] = useState(null)
-  const containerRef = useRef(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   // Reset selected PDF when modal opens or example changes
   useEffect(() => {
@@ -418,42 +607,12 @@ function ProjectModal({ isOpen, onClose, example }) {
       } else {
         setSelectedPdf(null)
       }
-      setScale(1.0) // Reset scale
     }
   }, [isOpen, example])
 
-  // Update container width on resize for "Fit Page" calculation if needed
-  useEffect(() => {
-    if (!containerRef.current) return;
-    
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.clientWidth)
-      }
-    }
-
-    updateWidth()
-    window.addEventListener('resize', updateWidth)
-    return () => window.removeEventListener('resize', updateWidth)
-  }, [selectedPdf, isOpen])
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-    // Auto-fit logic could go here, but let's start with a reasonable default
-    // or let the user decide.
-    // If on mobile, maybe start slightly zoomed out?
-    if (window.innerWidth < 768) {
-        setScale(0.6); 
-    } else {
-        setScale(1.0);
-    }
-  }
-
-  const zoomIn = () => setScale(prev => Math.min(prev + 0.2, 3.0))
-  const zoomOut = () => setScale(prev => Math.max(prev - 0.2, 0.4))
-  const fitWidth = () => {
-      // Approximate fit width logic or reset
-      setScale(1.0)
+  const handleDownload = (file) => {
+    // Open PDF in new tab for viewing/downloading
+    window.open(file.url, '_blank')
   }
 
   return (
@@ -486,38 +645,23 @@ function ProjectModal({ isOpen, onClose, example }) {
                 </div>
                 
                 <div className="flex items-center gap-2 shrink-0">
-                {selectedPdf ? (
+                {selectedPdf && example.files.length > 1 && (
                     <>
-                        {/* Zoom Controls */}
-                        <div className="hidden md:flex items-center bg-gray-100 rounded-lg p-1 mr-2">
-                            <button onClick={zoomOut} className="p-1.5 hover:bg-white rounded-md text-gray-600 transition-all" title="Zoom Out">
-                                <ZoomOut className="w-4 h-4" />
-                            </button>
-                            <span className="text-xs font-medium w-12 text-center">{Math.round(scale * 100)}%</span>
-                            <button onClick={zoomIn} className="p-1.5 hover:bg-white rounded-md text-gray-600 transition-all" title="Zoom In">
-                                <ZoomIn className="w-4 h-4" />
-                            </button>
-                        </div>
-
-                        {example.files.length > 1 && (
-                            <>
-                                <button 
-                                onClick={() => setSelectedPdf(null)}
-                                className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-all"
-                                >
-                                <ChevronLeft className="w-4 h-4" />
-                                <span>חזרה לרשימה</span>
-                                </button>
-                                <button 
-                                onClick={() => setSelectedPdf(null)}
-                                className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
-                                >
-                                <ChevronLeft className="w-6 h-6" />
-                                </button>
-                            </>
-                        )}
+                        <button 
+                        onClick={() => setSelectedPdf(null)}
+                        className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-all"
+                        >
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>חזרה לרשימה</span>
+                        </button>
+                        <button 
+                        onClick={() => setSelectedPdf(null)}
+                        className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                        >
+                        <ChevronLeft className="w-6 h-6" />
+                        </button>
                     </>
-                ) : null}
+                )}
                 
                 <button 
                     onClick={onClose}
@@ -529,10 +673,7 @@ function ProjectModal({ isOpen, onClose, example }) {
             </div>
 
             {/* Content */}
-            <div 
-                className="flex-1 overflow-auto bg-gray-100 relative w-full scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent flex justify-center"
-                ref={containerRef}
-            >
+            <div className="flex-1 overflow-auto bg-gray-100 relative w-full scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent flex justify-center">
                 {!selectedPdf ? (
                 // List View
                 <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full h-fit">
@@ -564,47 +705,35 @@ function ProjectModal({ isOpen, onClose, example }) {
                     ))}
                 </div>
                 ) : (
-                // PDF View with react-pdf
-                <div className="relative min-h-full py-8 px-4 flex justify-center">
-                    <Document
-                        file={selectedPdf.url}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        loading={
-                            <div className="flex flex-col items-center justify-center py-20 text-gray-400">
-                                <Loader2 className="w-10 h-10 animate-spin mb-4" />
-                                <p>טוען מסמך...</p>
-                            </div>
-                        }
-                        error={
-                            <div className="flex flex-col items-center justify-center py-20 text-red-400">
-                                <p>שגיאה בטעינת הקובץ.</p>
-                            </div>
-                        }
-                        className="shadow-xl"
-                    >
-                        {Array.from(new Array(numPages), (el, index) => (
-                            <Page 
-                                key={`page_${index + 1}`} 
-                                pageNumber={index + 1} 
-                                scale={scale}
-                                className="mb-4 bg-white"
-                                renderTextLayer={false}
-                                renderAnnotationLayer={false}
-                                loading=""
-                            />
-                        ))}
-                    </Document>
-
-                    {/* Mobile Zoom Controls (Floating) */}
-                    <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center bg-white/90 backdrop-blur shadow-lg rounded-full px-4 py-2 border border-gray-200 gap-4 z-50">
-                        <button onClick={zoomOut} className="p-2 hover:bg-gray-100 rounded-full text-gray-700">
-                            <ZoomOut className="w-5 h-5" />
-                        </button>
-                        <span className="text-sm font-medium w-10 text-center">{Math.round(scale * 100)}%</span>
-                        <button onClick={zoomIn} className="p-2 hover:bg-gray-100 rounded-full text-gray-700">
-                            <ZoomIn className="w-5 h-5" />
+                // PDF View with iframe
+                <div className="relative w-full h-full flex flex-col">
+                    {/* Download button */}
+                    <div className="absolute top-4 right-4 z-20">
+                        <button
+                            onClick={() => handleDownload(selectedPdf)}
+                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition-all font-medium text-sm"
+                        >
+                            <FileText className="w-4 h-4" />
+                            <span>פתח במסך מלא</span>
                         </button>
                     </div>
+
+                    {/* PDF iframe */}
+                    <iframe
+                        src={selectedPdf.url}
+                        className="w-full h-full border-0"
+                        title={selectedPdf.name}
+                        onLoad={() => setIsLoading(false)}
+                    />
+
+                    {isLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                            <div className="flex flex-col items-center gap-4">
+                                <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+                                <p className="text-gray-600 font-medium">טוען מסמך...</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 )}
             </div>
@@ -614,3 +743,5 @@ function ProjectModal({ isOpen, onClose, example }) {
     </AnimatePresence>
   )
 }
+
+export { ProjectModal, projectsData, serviceKeyMapping, allServices }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <g stroke="currentColor" stroke-opacity="0.35" stroke-width="1">
+    <path d="M0 0H80V80H0Z" />
+    <path d="M40 0V80" />
+    <path d="M0 40H80" />
+    <path d="M20 0V80" />
+    <path d="M60 0V80" />
+    <path d="M0 20H80" />
+    <path d="M0 60H80" />
+  </g>
+</svg>

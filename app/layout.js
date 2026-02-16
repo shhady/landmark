@@ -51,7 +51,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="he" dir="rtl" className={`${heebo.variable} ${rubik.variable}`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${heebo.variable} ${rubik.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -63,7 +68,10 @@ export default function RootLayout({ children }) {
           `}
         </Script>
       </head>
-      <body className={`overflow-x-hidden font-sans ${heebo.className} text-neutral-800 bg-white`}>
+      <body
+        className={`overflow-x-hidden font-sans ${heebo.className} text-neutral-800 bg-white`}
+        suppressHydrationWarning
+      >
         <noscript>
           <iframe 
             src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
