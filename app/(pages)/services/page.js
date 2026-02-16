@@ -599,6 +599,25 @@ function ProjectModal({ isOpen, onClose, example }) {
   const [selectedPdf, setSelectedPdf] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  const encodePublicUrl = (url) => {
+    if (!url || typeof url !== 'string') return url
+    const [path, hash] = url.split('#')
+    const encodedPath = path
+      .split('/')
+      .map((seg, i) => (i === 0 ? seg : encodeURIComponent(seg)))
+      .join('/')
+    return hash ? `${encodedPath}#${hash}` : encodedPath
+  }
+
+  const pdfEmbedUrl = (url) => {
+    const encoded = encodePublicUrl(url)
+    if (!encoded) return encoded
+    // Try to start "zoomed out" / fit-page in most built-in PDF viewers.
+    const fragment = 'view=Fit'
+    const joiner = encoded.includes('#') ? '&' : '#'
+    return `${encoded}${joiner}${fragment}`
+  }
+
   // Reset selected PDF when modal opens or example changes
   useEffect(() => {
     if (isOpen && example) {
@@ -612,7 +631,7 @@ function ProjectModal({ isOpen, onClose, example }) {
 
   const handleDownload = (file) => {
     // Open PDF in new tab for viewing/downloading
-    window.open(file.url, '_blank')
+    window.open(encodePublicUrl(file.url), '_blank')
   }
 
   return (
@@ -640,7 +659,9 @@ function ProjectModal({ isOpen, onClose, example }) {
                         <FileText className="w-5 h-5" />
                     </div>
                     <h3 className="text-lg md:text-xl font-bold text-gray-800 truncate max-w-[200px] md:max-w-md">
-                        {selectedPdf ? selectedPdf.name : example.name}
+                        {selectedPdf
+                          ? (example.files.length === 1 ? example.name : selectedPdf.name)
+                          : example.name}
                     </h3>
                 </div>
                 
@@ -720,7 +741,7 @@ function ProjectModal({ isOpen, onClose, example }) {
 
                     {/* PDF iframe */}
                     <iframe
-                        src={selectedPdf.url}
+                        src={pdfEmbedUrl(selectedPdf.url)}
                         className="w-full h-full border-0"
                         title={selectedPdf.name}
                         onLoad={() => setIsLoading(false)}
