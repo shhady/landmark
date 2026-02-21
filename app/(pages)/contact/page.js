@@ -12,10 +12,34 @@ export default function Contact() {
     message: ''
   })
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission logic here
-    console.log(formData)
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setStatus('error')
+        setErrorMsg(data?.error || 'שליחה נכשלה. נסו שוב.')
+        return
+      }
+
+      setStatus('success')
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+    } catch {
+      setStatus('error')
+      setErrorMsg('שליחה נכשלה. בדקו חיבור אינטרנט ונסו שוב.')
+    }
   }
 
   return (
@@ -40,11 +64,22 @@ export default function Contact() {
             >
               <h2 className="text-2xl font-bold mb-6">השאירו פרטים</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {status === 'success' && (
+                  <div className="rounded-lg border border-green-200 bg-green-50 p-3 text-green-800 text-sm">
+                    ההודעה נשלחה בהצלחה. נחזור אליכם בהקדם.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-red-800 text-sm">
+                    {errorMsg}
+                  </div>
+                )}
                 <div>
                   <label className="block text-gray-700 mb-2">שם מלא *</label>
                   <input
                     type="text"
                     required
+                    value={formData.name}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
@@ -54,6 +89,7 @@ export default function Contact() {
                   <input
                     type="email"
                     required
+                    value={formData.email}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
@@ -63,6 +99,7 @@ export default function Contact() {
                   <input
                     type="tel"
                     required
+                    value={formData.phone}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
@@ -70,6 +107,7 @@ export default function Contact() {
                 <div>
                   <label className="block text-gray-700 mb-2">נושא הפנייה</label>
                   <select 
+                    value={formData.subject}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
                   >
@@ -85,15 +123,17 @@ export default function Contact() {
                   <label className="block text-gray-700 mb-2">תוכן ההודעה</label>
                   <textarea
                     rows="4"
+                    value={formData.message}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition-colors"
+                  disabled={status === 'sending'}
+                  className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 disabled:cursor-not-allowed text-white py-3 rounded-lg transition-colors"
                 >
-                  שליחה
+                  {status === 'sending' ? 'שולח…' : 'שליחה'}
                 </button>
               </form>
             </motion.div>
