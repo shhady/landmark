@@ -35,4 +35,13 @@ body {
   .card-shadow {
     @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
   }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
 }

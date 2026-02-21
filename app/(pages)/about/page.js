@@ -62,7 +62,7 @@ export default function About() {
             >
               {/* Replace with real office image */}
               <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-               <Image src="/hazon-pic.png" alt="Office" width={1000} height={1000} />
+               <Image src="/hazon-pic-1.jpeg" alt="Office" width={1000} height={1000} />
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
                 <p className="text-white font-bold text-lg">טכנולוגיה ודיוק ללא פשרות</p>

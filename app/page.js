@@ -8,6 +8,7 @@ const WhyChooseUs = dynamic(() => import('@/components/sections/WhyChooseUs'))
 const Process = dynamic(() => import('@/components/sections/Process'))
 const FAQ = dynamic(() => import('@/components/sections/FAQ'))
 const CTA = dynamic(() => import('@/components/sections/CTA'))
+const LandCarousel = dynamic(() => import('@/components/sections/LandCarousel'))
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <WhyChooseUs />
       <Process />
       <FAQ />
+      <LandCarousel />
       {/* <CTA /> */}
     </main>
   )
