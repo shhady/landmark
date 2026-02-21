@@ -50,12 +50,12 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-primary-dark mb-6">למה לבחור ב-Landmap?</h2>
+              <h2 className="text-4xl font-bold text-primary-dark mb-6">למה לבחור בנו?</h2>
               
               <div className="text-lg text-gray-600 mb-8 leading-relaxed space-y-4">
                 <p>
                   כי במדידות אין מקום לטעויות.
-                  ב-Landmap אנו פועלים מתוך מטרה אחת ברורה: להבטיח תוצר סופי איכותי, אמין וברמה הגבוהה ביותר, כזה שמאפשר ללקוחות שלנו להתקדם בביטחון מלא ועם שקט נפשי לאורך כל הפרויקט.
+                  בחברתנו אנו פועלים מתוך מטרה אחת ברורה: להבטיח תוצר סופי איכותי, אמין וברמה הגבוהה ביותר, כזה שמאפשר ללקוחות שלנו להתקדם בביטחון מלא ועם שקט נפשי לאורך כל הפרויקט.
                 </p>
                 <p>
                   אנו משלבים ידע הנדסי עמוק, הבנה תכנונית רחבה וטכנולוגיות מדידה מתקדמות, כדי לספק נתונים מדויקים, למנוע טעויות מראש ולהבטיח תהליך עבודה יעיל, בטוח ומבוקר – משלב הרישוי והתכנון ועד למסירת הפרויקט.
@@ -80,8 +80,12 @@ export default function WhyChooseUs() {
           </div>
 
           <div className="lg:w-1/2 relative h-[500px] lg:h-auto">
+
+          <div className="text-3xl text-center font-bold text-primary-dark mb-6">LandMap על המפה !</div>
+
              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white h-full w-full group">
                {/* Transparent Overlay with Logo */}
+
                <div className="absolute inset-0 z-[1000] bg-slate-900/60 flex items-end justify-center pb-12 transition-opacity duration-500 group-hover:opacity-0 pointer-events-none">
                  <div className="relative w-96 h-36 opacity-50">
                    <Image 

@@ -119,7 +119,7 @@ export default function Contact() {
                     <div className="text-2xl text-blue-500">📧</div>
                     <div>
                       <h3 className="font-semibold">אימייל</h3>
-                      <p className="text-gray-600">Office@landmap-ltd.com</p>
+                      <p className="text-gray-600">Office@Landmap-Ltd.com</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4 space-x-reverse">

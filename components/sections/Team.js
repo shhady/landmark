@@ -17,7 +17,7 @@ export default function Team() {
       skills: ["תצ״ר ורישום מקרקעין", "ליווי פרויקטי תשתיות", "סריקות לייזר", "חוות דעת מומחה", "מדידות לביצוע"],
       contact: {
         phone: "054-6220167",
-        email: "Jawad@landmap-ltd.com"
+        email: "Jawad@Landmap-Ltd.com"
       },
       image: "/jawad.webp" 
     },
@@ -32,7 +32,7 @@ export default function Team() {
       skills: ["ניהול ביצוע פרויקטים", "מיפוי פוטוגרמטרי", "רחפנים ומידול 3D", "בקרת איכות", "מדידות לכבישים ותשתיות"],
       contact: {
         phone: "052-8139769",
-        email: "Esam@landmap-ltd.com"
+        email: "Esam@Landmap-Ltd.com"
       },
       image: "/essam.webp"
     }

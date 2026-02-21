@@ -30,7 +30,7 @@ export default function Footer() {
         address: 'רחוב אכסאל 9, נצרת',
         mobile: '054-6220167',
         phone: '052-8139769',
-        email: 'Office@landmap-ltd.com',
+        email: 'Office@Landmap-Ltd.com',
         hours: 'א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00'
       }
     }
