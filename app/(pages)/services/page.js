@@ -66,8 +66,8 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "מדידת ניין - מודל", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-Model.pdf" },
-          { name: "מדידת ניין - נספח", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-NESPAH.pdf" }
+          { name: "מודל", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-Model.pdf" },
+          { name: "נספח", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-NESPAH.pdf" }
         ]
       }
     ]
