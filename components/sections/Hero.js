@@ -16,7 +16,7 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/hero-image-landmap.png" 
+          src="/hero-image-landmap-new.png" 
           alt="מדידות הנדסיות בצפון - LANDMAP" 
           fill
           className="object-cover opacity-20"

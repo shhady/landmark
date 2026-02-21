@@ -434,6 +434,33 @@ function ServicesPageInner() {
   const [toast, setToast] = useState(null)
 
   useEffect(() => {
+    const scrollToHash = (behavior = 'smooth') => {
+      if (typeof window === 'undefined') return
+      const raw = window.location.hash?.slice(1)
+      if (!raw) return
+
+      let id = raw
+      try {
+        id = decodeURIComponent(raw)
+      } catch {
+        // ignore decode failures; use raw
+      }
+
+      const el = document.getElementById(id)
+      if (!el) return
+      el.scrollIntoView({ behavior, block: 'start' })
+    }
+
+    // After route navigation to /services#..., wait a tick for layout.
+    const t = setTimeout(() => scrollToHash('auto'), 0)
+    window.addEventListener('hashchange', scrollToHash)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('hashchange', scrollToHash)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!toast) return
     const t = setTimeout(() => setToast(null), 2500)
     return () => clearTimeout(t)
