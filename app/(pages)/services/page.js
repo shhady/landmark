@@ -38,13 +38,13 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "חישוב כמויות עפר", url: "/updated-projects/חישובי כמויות/1/חישוב כמויות עפר - ערימה מקרקע קיימת-Gil-2.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/חישובי כמויות/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "חישוב כמויות - K242", url: "/updated-projects/חישובי כמויות/2/H-60-2025-K242_2025.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/חישובי כמויות/2/דוגמה2.pdf" }
         ]
       }
     ]
@@ -55,7 +55,7 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "דוח ניטור תזוזות ושקיעות", url: "/updated-projects/מדידה לצורך ניטור דפורמציות/1/דוח ניטור תזוזות ושקיעות לקיר תומך - מעגן מיכאל.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידה לצורך ניטור דפורמציות/1/דוגמה1.pdf" }
         ]
       }
     ]
@@ -66,8 +66,8 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "מודל", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-Model.pdf" },
-          { name: "נספח", url: "/updated-projects/מדידה לצורך תכנון/1/V2-38-2024-מדידת ניין-NESPAH.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידה לצורך תכנון/1/דוגמה1.pdf" },
+          { name: "דוגמה 2", url: "/updated-projects/מדידה לצורך תכנון/1/דוגמה2.pdf" }
         ]
       }
     ]
@@ -93,19 +93,19 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "אורתופוטו - חיפה", url: "/updated-projects/מדידות באמצעות רחפן/1/M-HAIFA-HISDER-ORTHO.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידות באמצעות רחפן/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "מודל כבשני", url: "/updated-projects/מדידות באמצעות רחפן/2/M-KABSHANI-F-Model.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/מדידות באמצעות רחפן/2/דוגמה2.pdf" }
         ]
       },
       {
         name: "דוגמה 3",
         files: [
-          { name: "מדידת רחפן", url: "/updated-projects/מדידות באמצעות רחפן/3/TH -18970 - 63 _FINAL-DRONE.pdf" }
+          { name: "דוגמה 3", url: "/updated-projects/מדידות באמצעות רחפן/3/דוגמה3.pdf" }
         ]
       }
     ]
@@ -116,19 +116,19 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "היתר בנייה - עכו", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/1/M-AKKO-24-06-2025_V3-Model.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "היתר בנייה - כעביה", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/2/76-2022 - כעביה.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/2/דוגמה2.pdf" }
         ]
       },
       {
         name: "דוגמה 3",
         files: [
-          { name: "היתר בנייה - רז", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/3/M-RZ-10-12-25_87-2025.pdf" }
+          { name: "דוגמה 3", url: "/updated-projects/מדידות להיתרי בניה בנוהל רישוי זמין/3/דוגמה3.pdf" }
         ]
       }
     ]
@@ -139,7 +139,7 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "טופס 4 - יפיע", url: "/updated-projects/מדידות לטופס 4 - אישור איכלוס/1/MK-2025-28-04-Yaffa-TOFES-4-FINAL-Model.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידות לטופס 4 - אישור איכלוס/1/דוגמה1.pdf" }
         ]
       }
     ]
@@ -150,19 +150,19 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "מדידת As-Made", url: "/updated-projects/מדידות פנים/1/MP-AsMade-7-2023-Signed.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/מדידות פנים/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "מדידת בית רב קומות", url: "/updated-projects/מדידות פנים/2/מדידת בית רב קומות לעיצוב אדריכלי וקונסטרוקטיבי.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/מדידות פנים/2/דוגמה2.pdf" }
         ]
       },
       {
         name: "דוגמה 3",
         files: [
-          { name: "מדידה בהרצליה", url: "/updated-projects/מדידות פנים/3/MP-107-2026-HERTZILIYA.pdf" }
+          { name: "דוגמה 3", url: "/updated-projects/מדידות פנים/3/דוגמה3.pdf" }
         ]
       }
     ]
@@ -178,19 +178,19 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "תצ״ר מודל", url: "/updated-projects/תוכניות לצרכי רישום - תצר/1/503-2023-Model.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/תוכניות לצרכי רישום - תצר/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "תצ״ר - דוגמא 2", url: "/updated-projects/תוכניות לצרכי רישום - תצר/2/1994-2023_6075-S1.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/תוכניות לצרכי רישום - תצר/2/דוגמה2.pdf" }
         ]
       },
       {
         name: "דוגמה 3",
         files: [
-          { name: "תצ״ר חתום", url: "/updated-projects/תוכניות לצרכי רישום - תצר/3/792-2023-SIGNED.pdf" }
+          { name: "דוגמה 3", url: "/updated-projects/תוכניות לצרכי רישום - תצר/3/דוגמה3.pdf" }
         ]
       }
     ]
@@ -205,19 +205,19 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "תרשים עזר - אור עקיבא", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/1/TARSHEM-EZER-ALL-אור עקיבא.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/1/דוגמה1.pdf" }
         ]
       },
       {
         name: "דוגמה 2",
         files: [
-          { name: "תרשים עזר - ניין", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/2/tarshim-azer-ניין.pdf" }
+          { name: "דוגמה 2", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/2/דוגמה2.pdf" }
         ]
       },
       {
         name: "דוגמה 3",
         files: [
-          { name: "תרשים עזר - גלגוליה", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/3/TarshimEZER-FINAL-גלגוליה.pdf" }
+          { name: "דוגמה 3", url: "/updated-projects/תרשימי עזר - חישוב גבולות אנליטיים/3/דוגמה3.pdf" }
         ]
       }
     ]
@@ -232,7 +232,7 @@ const projectsData = {
       {
         name: "דוגמה 1",
         files: [
-          { name: "תת״ג מודל", url: "/updated-projects/תשריטים לתיעוד גבולות- תתג/1/1410-2022-Model.pdf" }
+          { name: "דוגמה 1", url: "/updated-projects/תשריטים לתיעוד גבולות- תתג/1/דוגמה1.pdf" }
         ]
       }
     ]
