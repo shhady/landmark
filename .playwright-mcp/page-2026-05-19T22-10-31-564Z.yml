@@ -1,0 +1,368 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "דף הבית" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - text: דף הבית
+        - link "אודות" [ref=e8] [cursor=pointer]:
+          - /url: /about
+          - text: אודות
+        - link "שירותים" [ref=e9] [cursor=pointer]:
+          - /url: /services
+          - text: שירותים
+        - link "צור קשר" [ref=e10] [cursor=pointer]:
+          - /url: /contact
+          - text: צור קשר
+      - link "Landmark Logo" [ref=e11] [cursor=pointer]:
+        - /url: /
+        - img "Landmark Logo" [ref=e13]
+  - main [ref=e14]:
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - img "מדידות הנדסיות בצפון - LANDMAP" [ref=e18]
+        - generic [ref=e21]:
+          - heading "מדידות הנדסיות דיוק • אחריות • מקצועיות • מיומנות" [level=1] [ref=e22]:
+            - text: מדידות הנדסיות
+            - generic [ref=e23]: דיוק • אחריות • מקצועיות • מיומנות
+          - paragraph [ref=e24]: משרד מודדים מוסמכים, הפועל מתוך תפיסה כי איכות התוצר הסופי מתחילה בבחירה הנכונה של מודד מוסמך – כזה שמבטיח דיוק, אחריות ושקט נפשי לכל אורך הפרויקט
+          - link "קבל הצעת מחיר" [ref=e26] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=e27]: קבל הצעת מחיר
+            - img [ref=e28]
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - generic [ref=e35]:
+                - paragraph [ref=e36]: אחריות מקצועית
+                - paragraph [ref=e37]: מלאה
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]:
+                - paragraph [ref=e43]: פתרונות ודיוק
+                - paragraph [ref=e44]: ברמה הגבוהה ביותר
+            - generic [ref=e45]:
+              - img [ref=e46]
+              - paragraph [ref=e50]: פריסה ארצית
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e55]:
+                - paragraph [ref=e56]: עמידה בלוחות
+                - paragraph [ref=e57]: זמנים
+      - generic [ref=e60]:
+        - generic [ref=e62]:
+          - heading "למה לבחור בנו?" [level=2] [ref=e63]
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: "כי במדידות אין מקום לטעויות. בחברתנו אנו פועלים מתוך מטרה אחת ברורה: להבטיח תוצר סופי איכותי, אמין וברמה הגבוהה ביותר, כזה שמאפשר ללקוחות שלנו להתקדם בביטחון מלא ועם שקט נפשי לאורך כל הפרויקט."
+            - paragraph [ref=e66]: אנו משלבים ידע הנדסי עמוק, הבנה תכנונית רחבה וטכנולוגיות מדידה מתקדמות, כדי לספק נתונים מדויקים, למנוע טעויות מראש ולהבטיח תהליך עבודה יעיל, בטוח ומבוקר – משלב הרישוי והתכנון ועד למסירת הפרויקט.
+            - paragraph [ref=e67]: ב-Landmap הדיוק אינו מטרה בפני עצמה, אלא אמצעי ליצירת תוצאה הנדסית נכונה, שמחזיקה לאורך זמן ומאפשרת ללקוח לקבל החלטות בראש שקט
+          - link "לכל השירותים" [ref=e69] [cursor=pointer]:
+            - /url: /services
+            - generic [ref=e70]: לכל השירותים
+            - img [ref=e71]
+        - generic [ref=e73]:
+          - generic [ref=e74]: LandMap על המפה !
+          - generic [ref=e75]:
+            - generic:
+              - generic:
+                - img "Landmap"
+            - generic [ref=e77]:
+              - generic:
+                - generic:
+                  - button [ref=e78] [cursor=pointer]
+                  - button [ref=e82] [cursor=pointer]
+                  - button [ref=e86] [cursor=pointer]
+                  - button [ref=e90] [cursor=pointer]
+                  - button [ref=e94] [cursor=pointer]
+                  - button [ref=e98] [cursor=pointer]
+                  - button [ref=e102] [cursor=pointer]
+                  - button [ref=e106] [cursor=pointer]
+                  - button [ref=e110] [cursor=pointer]
+                  - button [ref=e114] [cursor=pointer]
+                  - button [ref=e118] [cursor=pointer]
+                  - button [ref=e122] [cursor=pointer]
+                  - button [ref=e126] [cursor=pointer]
+                  - button [ref=e130] [cursor=pointer]
+                  - button [ref=e134] [cursor=pointer]
+                  - button [ref=e138] [cursor=pointer]
+                  - button [ref=e142] [cursor=pointer]
+                  - button [ref=e146] [cursor=pointer]
+                  - button [ref=e150] [cursor=pointer]
+                  - button [ref=e154] [cursor=pointer]
+                  - button [ref=e158] [cursor=pointer]
+                  - button [ref=e162] [cursor=pointer]
+                  - button [ref=e166] [cursor=pointer]
+                  - button [ref=e170] [cursor=pointer]
+                  - button [ref=e174] [cursor=pointer]
+                  - button [ref=e178] [cursor=pointer]
+                  - button [ref=e182] [cursor=pointer]
+                  - button [ref=e186] [cursor=pointer]
+                  - button [ref=e190] [cursor=pointer]
+                  - button [ref=e194] [cursor=pointer]
+                  - button [ref=e198] [cursor=pointer]
+                  - button [ref=e202] [cursor=pointer]
+                  - button [ref=e206] [cursor=pointer]
+                  - button [ref=e210] [cursor=pointer]
+                  - button [ref=e214] [cursor=pointer]
+                  - button [ref=e218] [cursor=pointer]
+                  - button [ref=e222] [cursor=pointer]
+                  - button [ref=e226] [cursor=pointer]
+                  - button [ref=e230] [cursor=pointer]
+                  - button [ref=e234] [cursor=pointer]
+                  - button [ref=e238] [cursor=pointer]
+                  - button [ref=e242] [cursor=pointer]
+                  - button [ref=e246] [cursor=pointer]
+                  - button [ref=e250] [cursor=pointer]
+                  - button [ref=e254] [cursor=pointer]
+                  - button [ref=e258] [cursor=pointer]
+                  - button [ref=e262] [cursor=pointer]
+                  - button [ref=e266] [cursor=pointer]
+                  - button [ref=e270] [cursor=pointer]
+                  - button [ref=e274] [cursor=pointer]
+                  - button [ref=e278] [cursor=pointer]
+                  - button [ref=e282] [cursor=pointer]
+                  - button [ref=e286] [cursor=pointer]
+                  - button [ref=e290] [cursor=pointer]
+                  - button [ref=e294] [cursor=pointer]
+                  - button [ref=e298] [cursor=pointer]
+              - generic:
+                - generic [ref=e302]:
+                  - button "Zoom in" [ref=e303] [cursor=pointer]: +
+                  - button "Zoom out" [ref=e304] [cursor=pointer]: −
+                - generic [ref=e305]:
+                  - link "Leaflet" [ref=e306] [cursor=pointer]:
+                    - /url: https://leafletjs.com
+                    - img [ref=e307]
+                    - text: Leaflet
+                  - text: "| ©"
+                  - link "OpenStreetMap" [ref=e311] [cursor=pointer]:
+                    - /url: https://www.openstreetmap.org/copyright
+                  - text: contributors ©
+                  - link "CARTO" [ref=e312] [cursor=pointer]:
+                    - /url: https://carto.com/attributions
+      - generic [ref=e314]:
+        - generic [ref=e315]:
+          - heading "תהליך העבודה שלנו" [level=2] [ref=e316]
+          - paragraph [ref=e317]: תהליך מסודר ושקוף המבטיח דיוק ועמידה בלוחות זמנים, מהשיחה הראשונה ועד קבלת התוכניות.
+        - generic [ref=e320]:
+          - generic [ref=e321]:
+            - img [ref=e323]
+            - heading "1. ייעוץ ראשוני" [level=3] [ref=e325]
+            - paragraph [ref=e326]: הבנת צרכי הפרויקט, היקף העבודה והדרישות התכנוניות והרגולטוריות.
+          - generic [ref=e327]:
+            - img [ref=e329]
+            - heading "2. מדידה בשטח" [level=3] [ref=e334]
+            - paragraph [ref=e335]: לאחר היתכנות ובדיקה משרדית, צוותי המדידה מגיעים לשטח למדידה באמצעות הציוד המתאים.
+          - generic [ref=e336]:
+            - img [ref=e338]
+            - heading "3. עיבוד נתונים במשרד" [level=3] [ref=e340]
+            - paragraph [ref=e341]: עיבוד, ניתוח והפקת תוצרים בהתאם לבקשת המזמין.
+          - generic [ref=e342]:
+            - img [ref=e344]
+            - heading "4. בקרת איכות" [level=3] [ref=e347]
+            - paragraph [ref=e348]: בדיקה קפדנית ואימות הנתונים על ידי מודד מוסמך, וחתימה על התוכניות.
+          - generic [ref=e349]:
+            - img [ref=e351]
+            - heading "5. מסירת תוצרים" [level=3] [ref=e355]
+            - paragraph [ref=e356]: מסירת תיק מדידה מלא, מוכן להגשה ולשימוש.
+      - generic [ref=e358]:
+        - generic [ref=e359]:
+          - heading "שאלות ותשובות נפוצות" [level=2] [ref=e360]
+          - paragraph [ref=e361]: כל מה שחשוב לדעת לפני שמזמינים מודד
+        - generic [ref=e362]:
+          - generic [ref=e364]:
+            - heading "? למה חשוב לבחור מודד מוסמך לפרויקט?" [level=3] [ref=e365]:
+              - generic [ref=e366]: "?"
+              - text: למה חשוב לבחור מודד מוסמך לפרויקט?
+            - paragraph [ref=e367]: מודד מוסמך אחראי על הדיוק שעליו נשען כל הפרויקט – תכנון, רישוי וביצוע. מדידה שגויה עלולה לגרום לעיכובים, עלויות מיותרות ובעיות מול הרשויות. בחירה במודד מוסמך מבטיחה עמידה בתקנים, אחריות מקצועית ותוצר אמין.
+          - generic [ref=e369]:
+            - heading "? באיזה שלב של הפרויקט צריך להזמין מודד?" [level=3] [ref=e370]:
+              - generic [ref=e371]: "?"
+              - text: באיזה שלב של הפרויקט צריך להזמין מודד?
+            - paragraph [ref=e372]: כבר בשלב ההיתכנות והתכנון המוקדם, לפני הכנת תוכניות והגשת היתרים. מדידה מוקדמת מאפשרת תכנון נכון, חישובי כמויות מדויקים ומונעת טעויות יקרות בשלבים מתקדמים של הפרויקט.
+          - generic [ref=e374]:
+            - heading "? האם אתם עובדים בפריסה ארצית?" [level=3] [ref=e375]:
+              - generic [ref=e376]: "?"
+              - text: האם אתם עובדים בפריסה ארצית?
+            - paragraph [ref=e377]: כן, אנו מספקים שירותי מדידה בפריסה ארצית בהתאם לאופי והיקף הפרויקט. צוותי המדידה ערוכים לתת מענה לפרויקטים פרטיים, מסחריים והנדסיים תוך עמידה בלוחות זמנים וסטנדרט מקצועי גבוה.
+          - generic [ref=e379]:
+            - heading "? איזה תוצרים הלקוח מקבל בסיום העבודה?" [level=3] [ref=e380]:
+              - generic [ref=e381]: "?"
+              - text: איזה תוצרים הלקוח מקבל בסיום העבודה?
+            - paragraph [ref=e382]: הלקוח מקבל תוצר סופי מלא בהתאם לדרישות הפרויקט והרשויות. התוצרים כוללים תשריטים, קבצים דיגיטליים, חישובים ודוחות מדידה, לאחר בקרת איכות ועם אחריות מקצועית מלאה.
+      - generic [ref=e387]:
+        - img "Land 1" [ref=e390]
+        - img "Land 2" [ref=e393]
+        - img "Land 3" [ref=e396]
+        - img "Land 4" [ref=e399]
+        - img "Land 5" [ref=e402]
+        - img "Land 6" [ref=e405]
+        - img "Land 7" [ref=e408]
+        - img "Land 1" [ref=e411]
+        - img "Land 2" [ref=e414]
+        - img "Land 3" [ref=e417]
+        - img "Land 4" [ref=e420]
+        - img "Land 5" [ref=e423]
+        - img "Land 6" [ref=e426]
+        - img "Land 7" [ref=e429]
+  - contentinfo [ref=e430]:
+    - generic [ref=e432]:
+      - generic [ref=e433]:
+        - link "Landmark Logo שירותי הנדסה ומדידות בע״מ" [ref=e434] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e435]:
+            - img "Landmark Logo" [ref=e437]
+            - generic [ref=e438]: שירותי הנדסה ומדידות בע״מ
+        - generic [ref=e439]:
+          - link [ref=e440] [cursor=pointer]:
+            - /url: https://wa.me/972546220167
+            - img [ref=e441]
+          - link [ref=e443] [cursor=pointer]:
+            - /url: https://www.instagram.com/landmap.ltd/
+            - img [ref=e444]
+      - generic [ref=e448]:
+        - heading "שירותים" [level=3] [ref=e449]
+        - list [ref=e450]:
+          - listitem [ref=e451]:
+            - link "קדסטר ורישום מקרקעין" [ref=e452] [cursor=pointer]:
+              - /url: /services#registration
+          - listitem [ref=e453]:
+            - link "תכנון סטטוטורי ורישוי" [ref=e454] [cursor=pointer]:
+              - /url: /services#planning
+          - listitem [ref=e455]:
+            - link "ביצוע פרויקטי תשתיות/מבנים" [ref=e456] [cursor=pointer]:
+              - /url: /services#engineering
+          - listitem [ref=e457]:
+            - link "מדידות מתקדמות ובקרה" [ref=e458] [cursor=pointer]:
+              - /url: /services#advanced
+      - generic [ref=e459]:
+        - heading "מידע" [level=3] [ref=e460]
+        - list [ref=e461]:
+          - listitem [ref=e462]:
+            - link "אודות" [ref=e463] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e464]:
+            - link "צור קשר" [ref=e465] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e466]:
+        - heading "צור קשר" [level=3] [ref=e467]
+        - generic [ref=e468]:
+          - paragraph [ref=e469]:
+            - generic [ref=e470]: 📍
+            - text: רחוב אכסאל 9, נצרת
+          - paragraph [ref=e471]:
+            - generic [ref=e472]: 📞
+            - text: 054-6220167
+          - paragraph [ref=e473]:
+            - generic [ref=e474]: 📞
+            - text: 052-8139769
+          - paragraph [ref=e475]:
+            - generic [ref=e476]: 📧
+            - text: Office@Landmap-Ltd.com
+          - paragraph [ref=e477]:
+            - generic [ref=e478]: 🕒
+            - text: "א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00"
+    - paragraph [ref=e482]: © 2026 כל הזכויות שמורות ללאנדמאפ שירותי הנדסה ומדידות בע״מ
+  - generic:
+    - generic:
+      - dialog
+      - generic [ref=e483]:
+        - note [ref=e484]: ניתן להשתמש בחצי המקלדת בכדי לנווט בין כפתורי הרכיב
+        - button "סרגל נגישות" [ref=e485] [cursor=pointer]:
+          - img [ref=e486]
+          - generic: ESC
+        - toolbar [ref=e495]:
+          - menuitem "ניווט מקלדת" [ref=e496]:
+            - button "ניווט מקלדת" [ref=e497] [cursor=pointer]:
+              - generic: ניווט מקלדת
+              - generic: Shift+A
+          - menuitem "ביטול הבהובים" [ref=e498]:
+            - button "ביטול הבהובים" [ref=e499] [cursor=pointer]:
+              - generic: ביטול הבהובים
+              - generic: Shift+B
+          - menuitem "מונוכרום" [ref=e500]:
+            - button "מונוכרום" [ref=e501] [cursor=pointer]:
+              - generic: מונוכרום
+              - generic: Shift+C
+          - menuitem "ספיה" [ref=e502]:
+            - button "ספיה" [ref=e503] [cursor=pointer]:
+              - generic: ספיה
+              - generic: Shift+D
+          - menuitem "ניגודיות גבוהה" [ref=e504]:
+            - button "ניגודיות גבוהה" [ref=e505] [cursor=pointer]:
+              - generic: ניגודיות גבוהה
+              - generic: Shift+E
+          - menuitem "שחור צהוב" [ref=e506]:
+            - button "שחור צהוב" [ref=e507] [cursor=pointer]:
+              - generic: שחור צהוב
+              - generic: Shift+F
+          - menuitem "היפוך צבעים" [ref=e508]:
+            - button "היפוך צבעים" [ref=e509] [cursor=pointer]:
+              - generic: היפוך צבעים
+              - generic: Shift+G
+          - menuitem "הדגשת כותרות" [ref=e510]:
+            - button "הדגשת כותרות" [ref=e511] [cursor=pointer]:
+              - generic: הדגשת כותרות
+              - generic: Shift+H
+          - menuitem "הדגשת קישורים" [ref=e512]:
+            - button "הדגשת קישורים" [ref=e513] [cursor=pointer]:
+              - generic: הדגשת קישורים
+              - generic: Shift+I
+          - menuitem "הצגת תיאור" [ref=e514]:
+            - button "הצגת תיאור" [ref=e515] [cursor=pointer]:
+              - generic: הצגת תיאור
+              - generic: Shift+J
+          - menuitem "תיאור קבוע" [ref=e516]:
+            - button "תיאור קבוע" [ref=e517] [cursor=pointer]:
+              - generic: תיאור קבוע
+              - generic: Shift+K
+          - menuitem "גופן קריא" [ref=e518]:
+            - button "גופן קריא" [ref=e519] [cursor=pointer]:
+              - generic: גופן קריא
+              - generic: Shift+L
+          - menuitem "הגדלת גופן" [ref=e520]:
+            - button "הגדלת גופן" [ref=e521] [cursor=pointer]:
+              - generic: הגדלת גופן
+              - generic: Shift+M
+          - menuitem "הקטנת גופן" [ref=e522]:
+            - button "הקטנת גופן" [ref=e523] [cursor=pointer]:
+              - generic: הקטנת גופן
+              - generic: Shift+N
+          - menuitem "הגדלת מסך" [ref=e524]:
+            - button "הגדלת מסך" [ref=e525] [cursor=pointer]:
+              - generic: הגדלת מסך
+              - generic: Shift++
+          - menuitem "הקטנת מסך" [ref=e526]:
+            - button "הקטנת מסך" [ref=e527] [cursor=pointer]:
+              - generic: הקטנת מסך
+              - generic: Shift+P
+          - menuitem "סמן גדול" [ref=e528]:
+            - button "סמן גדול" [ref=e529] [cursor=pointer]:
+              - generic: סמן גדול
+              - generic: Shift+Q
+          - menuitem "סמן שחור" [ref=e530]:
+            - button "סמן שחור" [ref=e531] [cursor=pointer]:
+              - generic: סמן שחור
+              - generic: Shift+R
+        - generic [ref=e532]:
+          - link "Enable Website" [ref=e533] [cursor=pointer]:
+            - /url: https://www.enable.co.il
+          - generic [ref=e534]:
+            - button "איפוס הגדרות Alt+P" [ref=e535] [cursor=pointer]:
+              - text: איפוס הגדרות
+              - generic: Alt+P
+            - button "הצהרת נגישות Alt+Q" [ref=e537] [cursor=pointer]:
+              - text: הצהרת נגישות
+              - generic: Alt+Q
+            - button "דיווח הפרה Alt+R" [ref=e539] [cursor=pointer]:
+              - text: דיווח הפרה
+              - generic: Alt+R
+          - generic [ref=e542]:
+            - button [ref=e543] [cursor=pointer]
+            - button [ref=e544] [cursor=pointer]
+          - link "מופעל על ידי uPress" [ref=e546] [cursor=pointer]:
+            - /url: https://www.upress.co.il
+            - text: מופעל על ידי
+            - img "uPress" [ref=e547]
+      - alert
+  - alert [ref=e551]
