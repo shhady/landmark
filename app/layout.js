@@ -83,6 +83,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <script src="https://cdn.enable.co.il/licenses/enable-L47784k8n24pqfm7-0925-82228/init.js"></script>
       </body>
     </html>
   )
