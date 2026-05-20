@@ -2,7 +2,7 @@ import './globals.css'
 import { Heebo, Rubik } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Script from 'next/script'
+
 const heebo = Heebo({ 
   subsets: ['hebrew', 'latin'],
   display: 'swap',
@@ -83,11 +83,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
-<Script
-  id="enable-accessibility"
-  src="https://cdn.enable.co.il/licenses/enable-L47784k8n24pqfm7-0925-82228/init.js"
-  strategy="afterInteractive"
-/>      </body>
+        <script src="https://cdn.enable.co.il/licenses/enable-L47784k8n24pqfm7-0925-82228/init.js"></script>
+      </body>
     </html>
   )
 }

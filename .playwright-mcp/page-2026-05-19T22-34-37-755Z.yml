@@ -1,0 +1,192 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "דף הבית" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - text: דף הבית
+        - link "אודות" [ref=e8] [cursor=pointer]:
+          - /url: /about
+          - text: אודות
+        - link "שירותים" [ref=e9] [cursor=pointer]:
+          - /url: /services
+          - text: שירותים
+        - link "צור קשר" [ref=e10] [cursor=pointer]:
+          - /url: /contact
+          - text: צור קשר
+      - link "Landmark Logo" [ref=e11] [cursor=pointer]:
+        - /url: /
+        - img "Landmark Logo" [ref=e13]
+  - main [ref=e14]:
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - img "מדידות הנדסיות בצפון - LANDMAP" [ref=e18]
+        - generic [ref=e21]:
+          - heading "מדידות הנדסיות דיוק • אחריות • מקצועיות • מיומנות" [level=1] [ref=e22]:
+            - text: מדידות הנדסיות
+            - generic [ref=e23]: דיוק • אחריות • מקצועיות • מיומנות
+          - paragraph [ref=e24]: משרד מודדים מוסמכים, הפועל מתוך תפיסה כי איכות התוצר הסופי מתחילה בבחירה הנכונה של מודד מוסמך – כזה שמבטיח דיוק, אחריות ושקט נפשי לכל אורך הפרויקט
+          - link "קבל הצעת מחיר" [ref=e26] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=e27]: קבל הצעת מחיר
+            - img [ref=e28]
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - generic [ref=e35]:
+                - paragraph [ref=e36]: אחריות מקצועית
+                - paragraph [ref=e37]: מלאה
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]:
+                - paragraph [ref=e43]: פתרונות ודיוק
+                - paragraph [ref=e44]: ברמה הגבוהה ביותר
+            - generic [ref=e45]:
+              - img [ref=e46]
+              - paragraph [ref=e50]: פריסה ארצית
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e55]:
+                - paragraph [ref=e56]: עמידה בלוחות
+                - paragraph [ref=e57]: זמנים
+      - generic [ref=e60]:
+        - generic [ref=e62]:
+          - heading "למה לבחור בנו?" [level=2] [ref=e63]
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: "כי במדידות אין מקום לטעויות. בחברתנו אנו פועלים מתוך מטרה אחת ברורה: להבטיח תוצר סופי איכותי, אמין וברמה הגבוהה ביותר, כזה שמאפשר ללקוחות שלנו להתקדם בביטחון מלא ועם שקט נפשי לאורך כל הפרויקט."
+            - paragraph [ref=e66]: אנו משלבים ידע הנדסי עמוק, הבנה תכנונית רחבה וטכנולוגיות מדידה מתקדמות, כדי לספק נתונים מדויקים, למנוע טעויות מראש ולהבטיח תהליך עבודה יעיל, בטוח ומבוקר – משלב הרישוי והתכנון ועד למסירת הפרויקט.
+            - paragraph [ref=e67]: ב-Landmap הדיוק אינו מטרה בפני עצמה, אלא אמצעי ליצירת תוצאה הנדסית נכונה, שמחזיקה לאורך זמן ומאפשרת ללקוח לקבל החלטות בראש שקט
+          - link "לכל השירותים" [ref=e69] [cursor=pointer]:
+            - /url: /services
+            - generic [ref=e70]: לכל השירותים
+            - img [ref=e71]
+        - generic [ref=e73]:
+          - generic [ref=e74]: LandMap על המפה !
+          - generic [ref=e75]:
+            - generic:
+              - generic:
+                - img "Landmap"
+            - generic [ref=e76]: Loading Map...
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - heading "תהליך העבודה שלנו" [level=2] [ref=e80]
+          - paragraph [ref=e81]: תהליך מסודר ושקוף המבטיח דיוק ועמידה בלוחות זמנים, מהשיחה הראשונה ועד קבלת התוכניות.
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - img [ref=e87]
+            - heading "1. ייעוץ ראשוני" [level=3] [ref=e89]
+            - paragraph [ref=e90]: הבנת צרכי הפרויקט, היקף העבודה והדרישות התכנוניות והרגולטוריות.
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - heading "2. מדידה בשטח" [level=3] [ref=e98]
+            - paragraph [ref=e99]: לאחר היתכנות ובדיקה משרדית, צוותי המדידה מגיעים לשטח למדידה באמצעות הציוד המתאים.
+          - generic [ref=e100]:
+            - img [ref=e102]
+            - heading "3. עיבוד נתונים במשרד" [level=3] [ref=e104]
+            - paragraph [ref=e105]: עיבוד, ניתוח והפקת תוצרים בהתאם לבקשת המזמין.
+          - generic [ref=e106]:
+            - img [ref=e108]
+            - heading "4. בקרת איכות" [level=3] [ref=e111]
+            - paragraph [ref=e112]: בדיקה קפדנית ואימות הנתונים על ידי מודד מוסמך, וחתימה על התוכניות.
+          - generic [ref=e113]:
+            - img [ref=e115]
+            - heading "5. מסירת תוצרים" [level=3] [ref=e119]
+            - paragraph [ref=e120]: מסירת תיק מדידה מלא, מוכן להגשה ולשימוש.
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - heading "שאלות ותשובות נפוצות" [level=2] [ref=e124]
+          - paragraph [ref=e125]: כל מה שחשוב לדעת לפני שמזמינים מודד
+        - generic [ref=e126]:
+          - generic [ref=e128]:
+            - heading "? למה חשוב לבחור מודד מוסמך לפרויקט?" [level=3] [ref=e129]:
+              - generic [ref=e130]: "?"
+              - text: למה חשוב לבחור מודד מוסמך לפרויקט?
+            - paragraph [ref=e131]: מודד מוסמך אחראי על הדיוק שעליו נשען כל הפרויקט – תכנון, רישוי וביצוע. מדידה שגויה עלולה לגרום לעיכובים, עלויות מיותרות ובעיות מול הרשויות. בחירה במודד מוסמך מבטיחה עמידה בתקנים, אחריות מקצועית ותוצר אמין.
+          - generic [ref=e133]:
+            - heading "? באיזה שלב של הפרויקט צריך להזמין מודד?" [level=3] [ref=e134]:
+              - generic [ref=e135]: "?"
+              - text: באיזה שלב של הפרויקט צריך להזמין מודד?
+            - paragraph [ref=e136]: כבר בשלב ההיתכנות והתכנון המוקדם, לפני הכנת תוכניות והגשת היתרים. מדידה מוקדמת מאפשרת תכנון נכון, חישובי כמויות מדויקים ומונעת טעויות יקרות בשלבים מתקדמים של הפרויקט.
+          - generic [ref=e138]:
+            - heading "? האם אתם עובדים בפריסה ארצית?" [level=3] [ref=e139]:
+              - generic [ref=e140]: "?"
+              - text: האם אתם עובדים בפריסה ארצית?
+            - paragraph [ref=e141]: כן, אנו מספקים שירותי מדידה בפריסה ארצית בהתאם לאופי והיקף הפרויקט. צוותי המדידה ערוכים לתת מענה לפרויקטים פרטיים, מסחריים והנדסיים תוך עמידה בלוחות זמנים וסטנדרט מקצועי גבוה.
+          - generic [ref=e143]:
+            - heading "? איזה תוצרים הלקוח מקבל בסיום העבודה?" [level=3] [ref=e144]:
+              - generic [ref=e145]: "?"
+              - text: איזה תוצרים הלקוח מקבל בסיום העבודה?
+            - paragraph [ref=e146]: הלקוח מקבל תוצר סופי מלא בהתאם לדרישות הפרויקט והרשויות. התוצרים כוללים תשריטים, קבצים דיגיטליים, חישובים ודוחות מדידה, לאחר בקרת איכות ועם אחריות מקצועית מלאה.
+      - generic [ref=e151]:
+        - img "Land 1" [ref=e154]
+        - img "Land 2" [ref=e157]
+        - img "Land 3" [ref=e160]
+        - img "Land 4" [ref=e163]
+        - img "Land 5" [ref=e166]
+        - img "Land 6" [ref=e169]
+        - img "Land 7" [ref=e172]
+        - img "Land 1" [ref=e175]
+        - img "Land 2" [ref=e178]
+        - img "Land 3" [ref=e181]
+        - img "Land 4" [ref=e184]
+        - img "Land 5" [ref=e187]
+        - img "Land 6" [ref=e190]
+        - img "Land 7" [ref=e193]
+  - contentinfo [ref=e194]:
+    - generic [ref=e196]:
+      - generic [ref=e197]:
+        - link "Landmark Logo שירותי הנדסה ומדידות בע״מ" [ref=e198] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e199]:
+            - img "Landmark Logo" [ref=e201]
+            - generic [ref=e202]: שירותי הנדסה ומדידות בע״מ
+        - generic [ref=e203]:
+          - link [ref=e204] [cursor=pointer]:
+            - /url: https://wa.me/972546220167
+            - img [ref=e205]
+          - link [ref=e207] [cursor=pointer]:
+            - /url: https://www.instagram.com/landmap.ltd/
+            - img [ref=e208]
+      - generic [ref=e212]:
+        - heading "שירותים" [level=3] [ref=e213]
+        - list [ref=e214]:
+          - listitem [ref=e215]:
+            - link "קדסטר ורישום מקרקעין" [ref=e216] [cursor=pointer]:
+              - /url: /services#registration
+          - listitem [ref=e217]:
+            - link "תכנון סטטוטורי ורישוי" [ref=e218] [cursor=pointer]:
+              - /url: /services#planning
+          - listitem [ref=e219]:
+            - link "ביצוע פרויקטי תשתיות/מבנים" [ref=e220] [cursor=pointer]:
+              - /url: /services#engineering
+          - listitem [ref=e221]:
+            - link "מדידות מתקדמות ובקרה" [ref=e222] [cursor=pointer]:
+              - /url: /services#advanced
+      - generic [ref=e223]:
+        - heading "מידע" [level=3] [ref=e224]
+        - list [ref=e225]:
+          - listitem [ref=e226]:
+            - link "אודות" [ref=e227] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e228]:
+            - link "צור קשר" [ref=e229] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e230]:
+        - heading "צור קשר" [level=3] [ref=e231]
+        - generic [ref=e232]:
+          - paragraph [ref=e233]:
+            - generic [ref=e234]: 📍
+            - text: רחוב אכסאל 9, נצרת
+          - paragraph [ref=e235]:
+            - generic [ref=e236]: 📞
+            - text: 054-6220167
+          - paragraph [ref=e237]:
+            - generic [ref=e238]: 📞
+            - text: 052-8139769
+          - paragraph [ref=e239]:
+            - generic [ref=e240]: 📧
+            - text: Office@Landmap-Ltd.com
+          - paragraph [ref=e241]:
+            - generic [ref=e242]: 🕒
+            - text: "א׳-ה׳: 8:00-17:00 | ו׳: 8:00-13:00"
+    - paragraph [ref=e246]: © 2026 כל הזכויות שמורות ללאנדמאפ שירותי הנדסה ומדידות בע״מ
